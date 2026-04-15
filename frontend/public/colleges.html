@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>College Finder Bhopal | BCA BBA BTech MBA | ir-pt Edtech</title>
+<meta name="description" content="Find and compare 50+ colleges in Bhopal. BCA, BBA, B.Tech, MBA admissions with fees. ir-pt Edtech — free counselling.">
+<meta name="keywords" content="college finder Bhopal,BCA college Bhopal,BBA admission Bhopal,BTech college Bhopal,MBA Bhopal,ir-pt Edtech">
+<link rel="canonical" href="https://www.irptedtech.com/colleges.html"><link rel="icon" href="/images/logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+.search-box{background:#fff;border-radius:14px;padding:18px;box-shadow:var(--s-sm);border:1.5px solid var(--lt);margin:22px 0 18px}
+.search-row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.si{flex:1;min-width:160px;padding:10px 14px;border-radius:8px;border:1.5px solid var(--lt);background:var(--off);font-size:14px;color:var(--ink);outline:none;transition:border .2s;-webkit-appearance:none}
+.si:focus{border-color:var(--mint);background:#fff}
+.fee-banner{background:linear-gradient(135deg,var(--ink),var(--sage2));border-radius:12px;padding:20px 22px;margin-bottom:18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.fee-banner-txt h3{font-size:16px;font-weight:800;color:#fff;margin-bottom:4px;font-family:"Plus Jakarta Sans",sans-serif}
+.fee-banner-txt p{font-size:13px;color:rgba(255,255,255);line-height:1.5}
+.fee-banner-actions{margin-left:auto;display:flex;gap:9px;flex-wrap:wrap}
+.col-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+.col-card{background:#fff;border-radius:12px;padding:18px;border:1.5px solid var(--lt);transition:all .25s;cursor:pointer}
+.col-card:hover{transform:translateY(-3px);box-shadow:var(--s-md);border-color:rgba(212,160,23,.25)}
+.cn{font-weight:800;font-size:15px;color:var(--ink);margin-bottom:3px;font-family:"Plus Jakarta Sans",sans-serif}
+.cc{font-size:13px;color:var(--sage);font-weight:600;margin-bottom:10px}
+.cm{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.cm span{font-size:12px;color:var(--gray);white-space:nowrap}
+.cf{display:flex;justify-content:space-between;align-items:flex-end;margin-top:12px;padding-top:12px;border-top:1px solid var(--lt)}
+.cfee{font-family:"Playfair Display",serif;font-size:20px;font-weight:900;color:var(--sage2)}
+.fee-locked{display:inline-flex;align-items:center;gap:5px;background:var(--gold-bg);border:1px solid rgba(212,160,23,.25);border-radius:7px;padding:6px 11px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.fee-locked:hover{background:rgba(212,160,23,.18)}
+.fee-locked span{font-size:12px;font-weight:700;color:var(--gold2)}
+.enq-btn{background:var(--sage);color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap}
+.enq-btn:hover{background:var(--sage2)}
+.unlock-note{background:var(--gold-bg);border:1px solid rgba(212,160,23,.22);border-radius:8px;padding:11px 14px;margin-bottom:15px;font-size:13px;color:var(--gold2);font-weight:600}
+.modal-col-name{background:var(--off);border-left:4px solid var(--sage);border-radius:0 8px 8px 0;padding:10px 14px;font-weight:700;font-size:14px;color:var(--ink);margin-bottom:15px}
+@media(max-width:600px){
+  .fee-banner{flex-direction:column;align-items:flex-start}
+  .fee-banner-actions{margin-left:0;width:100%}
+  .fee-banner-actions .btn{flex:1;justify-content:center}
+  .search-row{flex-direction:column}
+  .si{width:100%}
+  .cf{flex-direction:column;align-items:flex-start;gap:10px}
+  .enq-btn{width:100%;justify-content:center}
+}
+</style>
+</head>
+<body>
+<div id="nav-slot"></div><div id="wa-slot"></div>
+<div class="page-hdr">
+  <div class="mw">
+    <div class="breadcrumb"><a href="/index.html">Home</a> → College Finder</div>
+    <h1>College Finder — Bhopal</h1>
+    <p>Compare 50+ colleges by course and fees. Submit a quick form to unlock fee details and get personal recommendations.</p>
+  </div>
+</div>
+<div id="ticker-slot"></div>
+
+<section class="sp" style="background:var(--off)">
+  <div class="mw">
+    <!-- Search -->
+    <div class="search-box reveal">
+      <div class="search-row">
+        <input type="text" class="si" id="cSearch" placeholder="🔍 Search college or course..." oninput="filterCols()">
+        <select class="si" style="flex:0 0 auto;min-width:130px" id="cCourse" onchange="filterCols()">
+          <option value="">All Courses</option>
+          <option>BCA</option><option>BBA</option><option>B.Tech</option>
+          <option>MBA</option><option>B.Sc</option><option>B.Com</option>
+        </select>
+        <select class="si" style="flex:0 0 auto;min-width:130px" id="cFee" onchange="filterCols()">
+          <option value="">Any Budget</option>
+          <option value="30000">Under ₹30K</option>
+          <option value="50000">Under ₹50K</option>
+          <option value="80000">Under ₹80K</option>
+          <option value="100000">Under ₹1L</option>
+        </select>
+        <button class="btn btn-sage btn-sm" onclick="filterCols()" style="flex-shrink:0">Search</button>
+      </div>
+    </div>
+
+    <!-- Fee unlock banner -->
+    <div class="fee-banner" id="feeBanner">
+      <div style="font-size:32px;flex-shrink:0">🔒</div>
+      <div class="fee-banner-txt">
+        <h3>Unlock Exact Fee Details — Free!</h3>
+        <p>Fill a quick form with your name &amp; phone to instantly see fees for all colleges. Our counsellor will also call you.</p>
+      </div>
+      <div class="fee-banner-actions">
+        <button class="btn btn-gold" onclick="document.getElementById('unlockModal').classList.add('show')">🔓 Unlock Fees</button>
+        <a href="https://wa.me/918223063535?text=Hi!%20I%20want%20to%20know%20college%20fees%20in%20Bhopal." target="_blank" class="btn btn-wa btn-sm"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp</a>
+      </div>
+    </div>
+
+    <div id="colGrid" class="col-grid"><div class="loader"><div class="spinner"></div>Loading colleges...</div></div>
+    <div style="text-align:center;margin-top:24px">
+      <a href="https://wa.me/918223063535?text=Hi!%20I%20need%20help%20finding%20the%20right%20college%20in%20Bhopal." target="_blank" class="btn btn-wa">Can&apos;t find your college? WhatsApp us →</a>
+    </div>
+  </div>
+</section>
+
+<!-- UNLOCK MODAL -->
+<div class="overlay" id="unlockModal">
+  <div class="mbox">
+    <button class="mclose" onclick="document.getElementById('unlockModal').classList.remove('show')">✕</button>
+    <span class="sec-tag">🔓 Unlock Fees</span>
+    <h3 style="font-size:20px;font-weight:900;color:var(--ink);margin:10px 0 6px">Get Exact College Fees</h3>
+    <p style="font-size:13px;color:var(--gray);margin-bottom:14px">Enter your details to unlock fees. Our counsellor will also contact you.</p>
+    <div class="unlock-note">💡 After submitting, all college fees will be visible on this page.</div>
+    <div class="fg-2">
+      <div class="fg"><label>Name *</label><input type="text" id="ul-name" placeholder="Your name"></div>
+      <div class="fg"><label>Phone *</label><input type="tel" id="ul-phone" placeholder="10-digit number" maxlength="10"></div>
+    </div>
+    <div class="fg-2">
+      <div class="fg"><label>Interested Course</label>
+        <select id="ul-course"><option value="">Any</option><option>B.Tech</option><option>BCA</option><option>BBA</option><option>MBA</option><option>B.Com</option><option>B.Sc</option></select>
+      </div>
+      <div class="fg"><label>Budget/yr</label>
+        <select id="ul-budget"><option value="">Not sure</option><option value="30000">Under ₹30K</option><option value="50000">₹30K–50K</option><option value="80000">₹50K–80K</option><option value="120000">₹80K–1.2L</option></select>
+      </div>
+    </div>
+    <button class="btn btn-gold btn-full" style="padding:13px;font-size:15px" onclick="submitUnlock()" id="unlockBtn">🔓 Unlock All Fees — Free</button>
+    <a href="https://wa.me/918223063535?text=Hi!%20I%20want%20college%20fees%20in%20Bhopal." target="_blank" class="btn btn-wa btn-full" style="padding:12px;margin-top:9px"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Or Ask on WhatsApp</a>
+  </div>
+</div>
+
+<!-- ENQUIRY MODAL -->
+<div class="overlay" id="enqModal">
+  <div class="mbox">
+    <button class="mclose" onclick="document.getElementById('enqModal').classList.remove('show')">✕</button>
+    <h3 style="font-size:19px;font-weight:900;color:var(--ink);margin-bottom:6px">Enquire About College</h3>
+    <p style="font-size:13px;color:var(--gray);margin-bottom:12px">Get direct admission info and fee waiver options.</p>
+    <div class="modal-col-name" id="enqColName">–</div>
+    <div class="fg"><label>Name *</label><input type="text" id="em-name" placeholder="Your full name"></div>
+    <div class="fg"><label>Phone *</label><input type="tel" id="em-phone" placeholder="10-digit number" maxlength="10"></div>
+    <div class="fg"><label>Message (optional)</label><textarea id="em-msg" rows="2" placeholder="Any questions?"></textarea></div>
+    <button class="btn btn-dark btn-full" style="padding:12px" onclick="submitEnq()">Send Enquiry</button>
+    <a href="" id="enqWaLink" target="_blank" class="btn btn-wa btn-full" style="padding:11px;margin-top:9px"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp for Faster Reply</a>
+  </div>
+</div>
+
+<div id="footer-slot"></div>
+<script src="/js/shared.js"></script>
+<script>
+let allCols=[], feesUnlocked=sessionStorage.getItem('irpt_fees')==='true', selCol=null;
+const bc={Popular:'cb-pop',Budget:'cb-bud','Top Ranked':'cb-top',Govt:'cb-gov',New:'cb-pop'};
+
+async function loadColleges(){
+  try{
+    const d=await apiGet('/colleges?showFee='+(feesUnlocked?'true':'false'));
+    allCols=d.colleges||[];
+    if(feesUnlocked) document.getElementById('feeBanner').style.display='none';
+    const p=new URLSearchParams(location.search);
+    if(p.get('course')) document.getElementById('cCourse').value=p.get('course');
+    filterCols();
+  }catch(e){
+    document.getElementById('colGrid').innerHTML='<div class="empty"><h3>Could not load colleges</h3><p>Please <a href="https://wa.me/918223063535" target="_blank" style="color:var(--sage)">WhatsApp us</a> for the full list.</p></div>';
+  }
+}
+
+function renderCols(list){
+  if(!list.length){document.getElementById('colGrid').innerHTML='<div class="empty"><h3>No colleges found</h3><p>Try different filters or WhatsApp us.</p></div>';return;}
+  document.getElementById('colGrid').innerHTML=list.map(c=>`
+    <div class="col-card" onclick="openEnq(this,\'${c._id}\',\'${c.name}\',\'${c.course}\')">
+      <div class="cn">${c.name}</div>
+      <div class="cc">${c.course}</div>
+      <div class="cm"><span>🎓 ${c.affiliation||'Bhopal'}</span><span>💺 ${c.seats||60} seats</span></div>
+      ${c.badge?`<div style="margin-bottom:8px"><span class="cbadge ${bc[c.badge]||'cb-pop'}">${c.badge}</span></div>`:''}
+      <div class="cf">
+        <div>
+          <div style="font-size:10px;color:var(--gray);margin-bottom:3px">Annual Fee</div>
+          ${feesUnlocked&&c.fee
+            ?`<div class="cfee">${fmtFee(c.fee)}</div>`
+            :`<div class="fee-locked" onclick="event.stopPropagation();document.getElementById('unlockModal').classList.add('show')"><span>🔒</span><span>Unlock Fee</span></div>`}
+        </div>
+        <button class="enq-btn" onclick="event.stopPropagation();openEnq(null,'${c._id}','${c.name}','${c.course}')">Enquire →</button>
+      </div>
+    </div>`).join('');
+}
+
+function filterCols(){
+  const q=document.getElementById('cSearch').value.toLowerCase();
+  const cc=document.getElementById('cCourse').value;
+  const cf=+document.getElementById('cFee').value;
+  renderCols(allCols.filter(c=>
+    (!q||c.name.toLowerCase().includes(q)||c.course.toLowerCase().includes(q))&&
+    (!cc||c.course===cc)&&(!cf||!c.fee||c.fee<=cf)
+  ));
+}
+
+async function submitUnlock(){
+  const name=document.getElementById('ul-name').value.trim();
+  const phone=document.getElementById('ul-phone').value.trim();
+  if(!name||phone.length<10){showToast('Valid name and 10-digit phone required','error');return;}
+  const btn=document.getElementById('unlockBtn');btn.textContent='Unlocking...';btn.disabled=true;
+  try{
+    const course=document.getElementById('ul-course').value||'General';
+    await apiPost('/leads',{name,phone,course,source:'College Page',message:'Fee unlock request - Budget: '+document.getElementById('ul-budget').value});
+    feesUnlocked=true;sessionStorage.setItem('irpt_fees','true');
+    const d=await apiGet('/colleges?showFee=true');
+    allCols=d.colleges||[];filterCols();
+    document.getElementById('feeBanner').style.display='none';
+    document.getElementById('unlockModal').classList.remove('show');
+    showToast('Fees unlocked! Counsellor will contact you soon.');
+  }catch(e){showToast('Error: '+e.message,'error');}
+  btn.textContent='🔓 Unlock All Fees — Free';btn.disabled=false;
+}
+
+function openEnq(el,id,name,course){
+  selCol={id,name,course};
+  document.getElementById('enqColName').textContent=name+' – '+course;
+  // Pre-fill WhatsApp message
+  const waMsg=encodeURIComponent(`Hi! I am interested in ${name} – ${course}. Please share admission details.`);
+  document.getElementById('enqWaLink').href=`https://wa.me/918223063535?text=${waMsg}`;
+  document.getElementById('enqModal').classList.add('show');
+}
+
+async function submitEnq(){
+  const name=document.getElementById('em-name').value.trim();
+  const phone=document.getElementById('em-phone').value.trim();
+  if(!name||!phone){showToast('Name and phone required','error');return;}
+  try{
+    const r=await apiPost('/leads',{name,phone,course:selCol?.course||'General',source:'College Page',college:selCol?.name||'',message:document.getElementById('em-msg').value});
+    document.getElementById('enqModal').classList.remove('show');
+    showToast('Enquiry sent! ID: '+r.leadId);
+    ['em-name','em-phone','em-msg'].forEach(i=>document.getElementById(i).value='');
+  }catch(e){showToast('Error: '+e.message,'error');}
+}
+
+loadColleges();
+</script>
+</body></html>

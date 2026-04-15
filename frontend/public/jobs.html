@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jobs in Bhopal 2026 | Freshers & Experienced | ir-pt Edtech</title>
+<meta name="description" content="Find freshers and experienced jobs in Bhopal. IT, marketing, finance, sales. Apply through ir-pt Edtech for faster placement.">
+<meta name="keywords" content="jobs in Bhopal,freshers jobs Bhopal,IT jobs Bhopal 2026,placement Bhopal,ir-pt Edtech jobs">
+<link rel="canonical" href="https://www.irptedtech.com/jobs.html"><link rel="icon" href="/images/logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+.job-filters{display:flex;gap:9px;flex-wrap:wrap;margin:22px 0 16px;align-items:center}
+.jfi{padding:9px 14px;border-radius:8px;border:1.5px solid var(--lt);background:#fff;font-size:13px;color:var(--ink);outline:none;-webkit-appearance:none}
+.jfi.wide{flex:1;min-width:180px}
+.cat-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.ct{padding:7px 16px;border-radius:20px;border:1.5px solid var(--lt);background:#fff;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;color:var(--gray)}
+.ct.active,.ct:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.job-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px}
+.job-card{background:#fff;border-radius:12px;padding:20px;border:1.5px solid var(--lt);transition:all .28s}
+.job-card:hover{transform:translateY(-2px);box-shadow:var(--s-md);border-color:rgba(212,160,23,.2)}
+.jc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px}
+.jc-title{font-size:15px;font-weight:800;color:var(--ink);font-family:"Plus Jakarta Sans",sans-serif;line-height:1.3}
+.jc-company{font-size:13px;color:var(--sage);font-weight:600;margin-top:2px}
+.jc-sal{font-family:"Playfair Display",serif;font-size:16px;font-weight:900;color:var(--sage2);white-space:nowrap;flex-shrink:0}
+.jc-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:11px}
+.jtype{display:inline-block;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700}
+.jt-ft{background:rgba(45,106,79,.1);color:var(--sage)}
+.jt-in{background:rgba(212,160,23,.12);color:var(--gold2)}
+.jt-wfh{background:rgba(82,183,136,.12);color:#1a7a50}
+.jt-pt{background:rgba(13,27,42,.08);color:var(--ink)}
+.jc-meta{display:flex;flex-direction:column;gap:4px;margin-bottom:13px}
+.jc-meta span{font-size:12px;color:var(--gray);display:flex;align-items:center;gap:5px}
+.jc-foot{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(--lt)}
+.jc-date{font-size:11px;color:var(--gray)}
+.apply-btn{background:var(--gold);color:var(--ink);border:none;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:800;cursor:pointer;transition:all .2s;white-space:nowrap}
+.apply-btn:hover{background:var(--gold2);transform:scale(1.03)}
+.apply-box{background:var(--off);border-radius:8px;padding:12px 14px;margin-bottom:14px;border-left:4px solid var(--gold)}
+.apply-box h4{font-size:13px;font-weight:700;color:var(--ink)}
+.apply-box p{font-size:12px;color:var(--gray);margin-top:2px}
+@media(max-width:600px){
+  .job-filters{flex-direction:column;align-items:stretch}
+  .jfi.wide{width:100%}
+  .jc-top{flex-direction:column}
+  .jc-sal{align-self:flex-start}
+}
+</style>
+</head>
+<body>
+<div id="nav-slot"></div><div id="wa-slot"></div>
+<div class="page-hdr">
+  <div class="mw">
+    <div class="breadcrumb"><a href="/index.html">Home</a> → Jobs in Bhopal</div>
+    <h1>Jobs in Bhopal — 2026</h1>
+    <p>Freshers welcome. Updated daily. Apply through ir-pt Edtech for faster response and counsellor support.</p>
+  </div>
+</div>
+<div id="ticker-slot"></div>
+
+<section class="sp" style="background:var(--off)">
+  <div class="mw">
+    <div class="job-filters reveal">
+      <input type="text" class="jfi wide" id="jSearch" placeholder="🔍 Search job or company..." oninput="filterJobs()">
+      <select class="jfi" id="jType" onchange="filterJobs()" style="min-width:140px">
+        <option value="">All Types</option>
+        <option>Full-time</option><option>Internship</option><option>Work from Home</option><option>Part-time</option>
+      </select>
+      <button class="btn btn-gold btn-sm" onclick="filterJobs()">Search</button>
+    </div>
+    <div class="cat-tabs" id="catTabs">
+      <button class="ct active" onclick="filterCat('',this)">All Jobs</button>
+      <button class="ct" onclick="filterCat('IT',this)">IT</button>
+      <button class="ct" onclick="filterCat('Marketing',this)">Marketing</button>
+      <button class="ct" onclick="filterCat('Finance',this)">Finance</button>
+      <button class="ct" onclick="filterCat('Sales',this)">Sales</button>
+      <button class="ct" onclick="filterCat('Management',this)">Management</button>
+      <button class="ct" onclick="filterCat('Other',this)">Other</button>
+    </div>
+    <div id="jobGrid" class="job-grid"><div class="loader"><div class="spinner"></div>Loading jobs...</div></div>
+    <div style="text-align:center;margin-top:24px">
+      <a href="https://wa.me/918223063535?text=Hi!%20I%20am%20looking%20for%20a%20job%20in%20Bhopal.%20Please%20help%20me%20find%20opportunities." target="_blank" class="btn btn-wa">Get Personal Job Search Help →</a>
+    </div>
+  </div>
+</section>
+
+<!-- APPLY MODAL -->
+<div class="overlay" id="applyModal">
+  <div class="mbox">
+    <button class="mclose" onclick="document.getElementById('applyModal').classList.remove('show')">✕</button>
+    <h3 style="font-size:19px;font-weight:900;color:var(--ink);margin-bottom:6px">Apply for Job</h3>
+    <p style="font-size:13px;color:var(--gray);margin-bottom:12px">Our placement team will forward your application directly.</p>
+    <div class="apply-box"><h4 id="applyTitle">–</h4><p id="applyCompany">–</p></div>
+    <div class="fg"><label>Full Name *</label><input type="text" id="ap-name" placeholder="Your full name"></div>
+    <div class="fg"><label>Phone *</label><input type="tel" id="ap-phone" placeholder="10-digit number" maxlength="10"></div>
+    <div class="fg"><label>Email</label><input type="email" id="ap-email" placeholder="your@email.com"></div>
+    <div class="fg"><label>Why apply? (optional)</label><textarea id="ap-msg" rows="2" placeholder="Brief intro..."></textarea></div>
+    <button class="btn btn-gold btn-full" style="padding:12px;font-size:15px" onclick="submitApply()" id="applyBtn">Submit Application →</button>
+    <a href="" id="applyWaLink" target="_blank" class="btn btn-wa btn-full" style="padding:11px;margin-top:9px"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Apply via WhatsApp</a>
+  </div>
+</div>
+
+<div id="footer-slot"></div>
+<script src="/js/shared.js"></script>
+<script>
+let allJobs=[], selJob=null, curCat='';
+const tc={'Full-time':'jt-ft','Internship':'jt-in','Work from Home':'jt-wfh','Part-time':'jt-pt','Contract':'jt-pt'};
+
+async function loadJobs(){
+  try{
+    const d=await apiGet('/jobs');
+    allJobs=d.jobs||[];
+    filterJobs();
+  }catch(e){
+    document.getElementById('jobGrid').innerHTML='<div class="empty"><h3>Could not load jobs</h3><p>WhatsApp us for latest openings.</p></div>';
+  }
+}
+
+function renderJobs(list){
+  if(!list.length){document.getElementById('jobGrid').innerHTML='<div class="empty"><h3>No jobs found</h3><p>Try different filters or <a href="https://wa.me/918223063535?text=Hi!%20I%20am%20looking%20for%20a%20job." target="_blank" style="color:var(--sage)">WhatsApp us</a>.</p></div>';return;}
+  document.getElementById('jobGrid').innerHTML=list.map(j=>`
+    <div class="job-card">
+      <div class="jc-top">
+        <div>
+          <div class="jc-title">${j.title}</div>
+          <div class="jc-company">${j.company}</div>
+        </div>
+        ${j.salary?`<div class="jc-sal">${j.salary.split('/')[0].split('–')[0].trim()}</div>`:''}
+      </div>
+      <div class="jc-tags">
+        <span class="jtype ${tc[j.type]||'jt-ft'}">${j.type}</span>
+        <span class="cbadge cb-pop">${j.category}</span>
+      </div>
+      <div class="jc-meta">
+        <span>📍 ${j.location}</span>
+        <span>💼 ${j.experience||'Freshers OK'}</span>
+        ${j.salary?`<span>💰 ${j.salary}</span>`:''}
+        ${j.description?`<span style="line-height:1.5;margin-top:2px">${j.description.slice(0,80)}...</span>`:''}
+      </div>
+      <div class="jc-foot">
+        <span class="jc-date">${fmtDate(j.createdAt)}</span>
+        <button class="apply-btn" onclick="openApply('${j._id}','${j.title.replace(/'/g,"\\")}','${j.company.replace(/'/g,"\\")}','${(j.applyLink||'').replace(/'/g,"\\")}')">Apply Now →</button>
+      </div>
+    </div>`).join('');
+}
+
+function filterJobs(){
+  const q=document.getElementById('jSearch').value.toLowerCase();
+  const t=document.getElementById('jType').value;
+  renderJobs(allJobs.filter(j=>
+    (!q||j.title.toLowerCase().includes(q)||j.company.toLowerCase().includes(q))&&
+    (!t||j.type===t)&&(!curCat||j.category===curCat)
+  ));
+}
+
+function filterCat(cat,btn){
+  curCat=cat;
+  document.querySelectorAll('.ct').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  filterJobs();
+}
+
+function openApply(id,title,company,link){
+  selJob={id,title,company};
+  document.getElementById('applyTitle').textContent=title;
+  document.getElementById('applyCompany').textContent=company;
+  const waMsg=encodeURIComponent(`Hi! I want to apply for the position: ${title} at ${company}. Please share details.`);
+  document.getElementById('applyWaLink').href=`https://wa.me/918223063535?text=${waMsg}`;
+  document.getElementById('applyModal').classList.add('show');
+}
+
+async function submitApply(){
+  const name=document.getElementById('ap-name').value.trim();
+  const phone=document.getElementById('ap-phone').value.trim();
+  if(!name||phone.length<10){showToast('Valid name and 10-digit phone required','error');return;}
+  const btn=document.getElementById('applyBtn');btn.textContent='Submitting...';btn.disabled=true;
+  try{
+    const r=await apiFetch('POST','/jobs/'+selJob.id+'/apply',{
+      name,phone,
+      email:document.getElementById('ap-email').value,
+      message:document.getElementById('ap-msg').value
+    });
+    document.getElementById('applyModal').classList.remove('show');
+    showToast('Application submitted! ID: '+r.leadId);
+    ['ap-name','ap-phone','ap-email','ap-msg'].forEach(i=>document.getElementById(i).value='');
+  }catch(e){showToast('Error: '+e.message,'error');}
+  btn.textContent='Submit Application →';btn.disabled=false;
+}
+
+loadJobs();
+</script>
+</body></html>

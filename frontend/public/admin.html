@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin Panel | ir-pt Edtech</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="/images/logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+body{background:var(--off)}
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:var(--ink)}
+.login-card{background:#fff;border-radius:18px;padding:36px;max-width:380px;width:100%;box-shadow:0 24px 72px rgba(0,0,0,.3)}
+.login-logo{display:flex;align-items:center;gap:11px;justify-content:center;margin-bottom:24px}
+.login-logo img{width:48px;height:48px;object-fit:contain;border-radius:9px;background:var(--ink);padding:4px}
+.login-logo-text{font-family:"Playfair Display",serif;font-weight:900;font-size:21px;color:var(--ink)}
+.login-logo-text em{color:var(--gold);font-style:normal}
+.login-err{display:none;background:rgba(214,40,40,.08);border:1px solid rgba(214,40,40,.2);border-radius:8px;padding:9px 13px;font-size:13px;color:var(--red);margin-bottom:14px}
+/* Dashboard */
+.adm-wrap{display:none;min-height:100vh}
+.adm-topbar{background:var(--ink);padding:0 20px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:2px solid var(--gold)}
+.adm-logo{display:flex;align-items:center;gap:9px}
+.adm-logo img{width:30px;height:30px;object-fit:contain;border-radius:5px;background:#fff;padding:2px}
+.adm-logo span{font-family:"Playfair Display",serif;font-weight:900;font-size:15px;color:#fff}
+.adm-logo span em{color:var(--gold);font-style:normal}
+.adm-topbar-r{display:flex;align-items:center;gap:9px}
+.adm-time{font-size:12px;color:rgba(255,255,255,.4)}
+.logout-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#fff;padding:6px 13px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s}
+.logout-btn:hover{background:var(--red);border-color:var(--red)}
+.adm-body{padding:20px}
+/* Stats */
+.stats-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:22px}
+.stat-c{background:#fff;border-radius:10px;padding:16px;border:1.5px solid var(--lt);text-align:center}
+.stat-n{font-family:"Playfair Display",serif;font-size:26px;font-weight:900;color:var(--gold)}
+.stat-l{font-size:11px;color:var(--gray);margin-top:3px}
+/* Tabs */
+.adm-tabs{display:flex;gap:0;border-bottom:2px solid var(--lt);margin-bottom:18px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.at{padding:10px 18px;border:none;background:none;font-weight:700;font-size:13px;color:var(--gray);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:all .2s}
+.at.active{color:var(--ink);border-bottom-color:var(--gold)}
+.ap{display:none}.ap.active{display:block}
+/* Toolbar */
+.tb{display:flex;gap:8px;margin-bottom:13px;flex-wrap:wrap;align-items:center}
+.tb-inp{padding:8px 12px;border-radius:7px;border:1.5px solid var(--lt);font-size:13px;background:#fff; outline:none;-webkit-appearance:none;}
+.tb-inp:focus{border-color:var(--mint)}
+.tb-btn{padding:8px 15px;border-radius:7px;border:1.5px solid var(--lt);background:#fff;color:var(--ink);font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap}
+.tb-btn:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tb-btn.prim{background:var(--sage);border-color:var(--sage);color:#fff}.tb-btn.prim:hover{background:var(--sage2)}
+.tb-btn.gold{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.tb-btn.danger{border-color:var(--red);color:var(--red)}.tb-btn.danger:hover{background:var(--red);color:#fff}
+.tb-count{font-size:12px;color:var(--gray);margin-left:auto}
+/* Form panel */
+.fp{background:#fff;border-radius:10px;padding:20px;border:1.5px solid var(--lt);margin-bottom:16px;display:none}
+.fp h4{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:14px}
+/* Upload zone */
+.upz{border:2px dashed var(--lt);border-radius:10px;padding:28px;text-align:center;cursor:pointer;transition:all .2s;margin:12px 0}
+.upz:hover{border-color:var(--gold);background:var(--gold-bg)}
+.upz h4{font-size:14px;font-weight:700;color:var(--ink);margin-top:7px}
+.upz p{font-size:12px;color:var(--gray);margin-top:3px}
+@media(max-width:960px){.stats-row{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.stats-row{grid-template-columns:1fr 1fr}.adm-body{padding:12px}.adm-time{display:none}}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-wrap" id="loginWrap">
+  <div class="login-card">
+    <div class="login-logo">
+      <img src="/images/logo.jpg" alt="">
+      <div class="login-logo-text">ir-pt <em>Edtech</em></div>
+    </div>
+    <h2 style="font-size:20px;font-weight:900;color:var(--ink);text-align:center;margin-bottom:5px">Admin Login</h2>
+    <p style="font-size:13px;color:var(--gray);text-align:center;margin-bottom:20px">Enter your admin password to continue</p>
+    <div class="login-err" id="loginErr"></div>
+    <div class="fg"><label>Admin Password</label><input type="password" id="adminPass" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <button class="btn btn-dark btn-full" style="padding:13px;font-size:15px" onclick="doLogin()" id="loginBtn">Login →</button>
+    <p style="font-size:12px;color:var(--gray);text-align:center;margin-top:14px">Set password in <code style="background:var(--off);padding:2px 5px;border-radius:3px">.env</code> as <code style="background:var(--off);padding:2px 5px;border-radius:3px">ADMIN_PASSWORD</code></p>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="adm-wrap" id="admWrap">
+  <div class="adm-topbar">
+    <div class="adm-logo">
+      <img src="/images/logo.jpg" alt="">
+      <span>ir-pt <em>Edtech</em> — Admin</span>
+    </div>
+    <div class="adm-topbar-r">
+      <span class="adm-time" id="admTime"></span>
+      <a href="/" target="_blank" class="logout-btn" style="background:rgba(82,183,136,.15);border-color:rgba(82,183,136,.25);color:var(--mint2)">View Site</a>
+      <button class="logout-btn" onclick="doLogout()">Logout</button>
+    </div>
+  </div>
+  <div class="adm-body">
+    <!-- Stats -->
+    <div class="stats-row" id="statsRow">
+      <div class="stat-c"><div class="stat-n" id="st-total">–</div><div class="stat-l">Total Leads</div></div>
+      <div class="stat-c"><div class="stat-n" id="st-new" style="color:var(--sage)">–</div><div class="stat-l">New Leads</div></div>
+      <div class="stat-c"><div class="stat-n" id="st-enrolled" style="color:var(--green)">–</div><div class="stat-l">Enrolled</div></div>
+      <div class="stat-c"><div class="stat-n" id="st-cols">–</div><div class="stat-l">Colleges</div></div>
+      <div class="stat-c"><div class="stat-n" id="st-jobs" style="color:var(--gold)">–</div><div class="stat-l">Jobs</div></div>
+    </div>
+    <!-- Tabs -->
+    <div class="adm-tabs">
+      <button class="at active" onclick="aTab('leads',this)">📋 Leads</button>
+      <button class="at" onclick="aTab('upload',this)">⬆ Upload</button>
+      <button class="at" onclick="aTab('colleges',this)">🏫 Colleges</button>
+      <button class="at" onclick="aTab('jobs',this)">💼 Jobs</button>
+      <button class="at" onclick="aTab('news',this)">📰 News</button>
+    </div>
+
+    <!-- LEADS -->
+    <div class="ap active" id="ap-leads">
+      <div class="tb">
+        <input type="text" class="tb-inp" placeholder="Search name/phone/course..." style="min-width:180px" oninput="filterLeads(this.value)">
+        <select class="tb-inp" onchange="filterLeadSt(this.value)">
+          <option value="">All Status</option>
+          <option>New</option><option>Follow-up</option><option>Enrolled</option><option>Cold</option>
+        </select>
+        <button class="tb-btn gold" onclick="exportLeads()">⬇ Export CSV</button>
+        <button class="tb-btn prim" onclick="loadLeads()">↻ Refresh</button>
+        <span class="tb-count" id="leadCount"></span>
+      </div>
+      <div class="atbl-wrap">
+        <table class="atbl">
+          <thead><tr><th>#</th><th>Name</th><th>Phone</th><th>Course</th><th>Source</th><th>Date</th><th>Status</th><th>Notes</th><th>Action</th></tr></thead>
+          <tbody id="leadsBody"><tr><td colspan="9" style="text-align:center;padding:28px;color:var(--gray)">Loading...</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- UPLOAD -->
+    <div class="ap" id="ap-upload">
+      <p style="font-size:14px;color:var(--gray);margin-bottom:12px">Upload leads from events, calls, or referrals.</p>
+      <div class="upz" onclick="document.getElementById('csvUp').click()">
+        <div style="font-size:36px">📁</div>
+        <h4>Click to Upload CSV</h4>
+        <p>Columns: Name, Phone, Course, Source (header row optional)</p>
+        <input type="file" id="csvUp" accept=".csv,.txt" style="display:none" onchange="parseCSV(this)">
+      </div>
+      <div id="csvPrev"></div>
+      <div style="height:1px;background:var(--lt);margin:22px 0"></div>
+      <h4 style="font-size:14px;font-weight:800;color:var(--ink);margin-bottom:14px">Add Single Lead</h4>
+      <div class="fg-2">
+        <div class="fg"><label>Name *</label><input type="text" id="al-name" placeholder="Student name"></div>
+        <div class="fg"><label>Phone *</label><input type="tel" id="al-phone" placeholder="Phone number" maxlength="10"></div>
+        <div class="fg"><label>Course</label>
+          <select id="al-course"><option>BCA</option><option>BBA</option><option>B.Tech</option><option>MBA</option><option>B.Sc</option><option>B.Com</option><option>Other</option></select>
+        </div>
+        <div class="fg"><label>Source</label>
+          <select id="al-source"><option>Walk-in</option><option>Referral</option><option>WhatsApp</option><option>Event</option><option>Phone Call</option><option>Manual</option></select>
+        </div>
+      </div>
+      <button class="btn btn-mint" onclick="addManualLead()">Add Lead</button>
+    </div>
+
+    <!-- COLLEGES -->
+    <div class="ap" id="ap-colleges">
+      <div class="tb">
+        <button class="tb-btn prim" onclick="toggleFP('fpCol')">+ Add College</button>
+        <button class="tb-btn" onclick="loadCols()">↻ Refresh</button>
+      </div>
+      <div class="fp" id="fpCol">
+        <h4>Add New College</h4>
+        <div class="fg-2">
+          <div class="fg"><label>College Name *</label><input type="text" id="ac-name" placeholder="e.g. LNCT Bhopal"></div>
+          <div class="fg"><label>Course *</label><select id="ac-course"><option>BCA</option><option>BBA</option><option>B.Tech</option><option>MBA</option><option>B.Sc</option><option>B.Com</option></select></div>
+          <div class="fg"><label>Annual Fee ₹ *</label><input type="number" id="ac-fee" placeholder="e.g. 75000"></div>
+          <div class="fg"><label>Seats</label><input type="number" id="ac-seats" placeholder="60"></div>
+          <div class="fg"><label>Affiliation</label><input type="text" id="ac-affil" placeholder="e.g. RGPV"></div>
+          <div class="fg"><label>Badge</label><select id="ac-badge"><option value="">None</option><option>Popular</option><option>Budget</option><option>Top Ranked</option><option>Govt</option><option>New</option></select></div>
+        </div>
+        <div class="fg"><label>Description</label><textarea id="ac-desc" rows="2" placeholder="Short description..."></textarea></div>
+        <div style="display:flex;gap:9px">
+          <button class="btn btn-mint" onclick="saveCollege()">Save College</button>
+          <button class="tb-btn" onclick="toggleFP('fpCol')">Cancel</button>
+        </div>
+      </div>
+      <div class="atbl-wrap">
+        <table class="atbl"><thead><tr><th>Name</th><th>Course</th><th>Fee/yr</th><th>Seats</th><th>Affiliation</th><th>Badge</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody id="colsBody"><tr><td colspan="8" style="text-align:center;padding:28px;color:var(--gray)">Loading...</td></tr></tbody></table>
+      </div>
+    </div>
+
+    <!-- JOBS -->
+    <div class="ap" id="ap-jobs">
+      <div class="tb">
+        <button class="tb-btn prim" onclick="toggleFP('fpJob')">+ Post Job</button>
+        <button class="tb-btn gold" onclick="exportJobApplicants()">⬇ Applicants CSV</button>
+        <button class="tb-btn" onclick="loadJobs()">↻ Refresh</button>
+      </div>
+      <div class="fp" id="fpJob">
+        <h4>Post New Job</h4>
+        <div class="fg-2">
+          <div class="fg"><label>Job Title *</label><input type="text" id="jb-title" placeholder="e.g. Junior Developer"></div>
+          <div class="fg"><label>Company *</label><input type="text" id="jb-company" placeholder="Company name"></div>
+          <div class="fg"><label>Location</label><input type="text" id="jb-loc" value="Bhopal, MP"></div>
+          <div class="fg"><label>Type</label><select id="jb-type"><option>Full-time</option><option>Part-time</option><option>Internship</option><option>Work from Home</option><option>Contract</option></select></div>
+          <div class="fg"><label>Category</label><select id="jb-cat"><option>IT</option><option>Marketing</option><option>Finance</option><option>Sales</option><option>Management</option><option>Teaching</option><option>Healthcare</option><option>Other</option></select></div>
+          <div class="fg"><label>Salary</label><input type="text" id="jb-sal" placeholder="e.g. ₹2.5L–₹4L/year"></div>
+          <div class="fg"><label>Experience</label><input type="text" id="jb-exp" value="Freshers OK"></div>
+          <div class="fg"><label>Apply Link (optional)</label><input type="url" id="jb-link" placeholder="https://..."></div>
+        </div>
+        <div class="fg"><label>Description</label><textarea id="jb-desc" rows="3" placeholder="Describe the role..."></textarea></div>
+        <div class="fg"><label>Requirements</label><textarea id="jb-req" rows="2" placeholder="Required skills/qualifications..."></textarea></div>
+        <div style="display:flex;gap:9px">
+          <button class="btn btn-mint" onclick="saveJob()">Post Job</button>
+          <button class="tb-btn" onclick="toggleFP('fpJob')">Cancel</button>
+        </div>
+      </div>
+      <div class="atbl-wrap">
+        <table class="atbl"><thead><tr><th>Title</th><th>Company</th><th>Type</th><th>Category</th><th>Salary</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody id="jobsBody"><tr><td colspan="7" style="text-align:center;padding:28px;color:var(--gray)">Loading...</td></tr></tbody></table>
+      </div>
+    </div>
+
+    <!-- NEWS -->
+    <div class="ap" id="ap-news">
+      <div class="tb">
+        <button class="tb-btn prim" onclick="toggleFP('fpNews')">+ Post Article</button>
+        <button class="tb-btn" onclick="loadNews()">↻ Refresh</button>
+      </div>
+      <div class="fp" id="fpNews">
+        <h4>Post New Article</h4>
+        <div class="fg"><label>Headline *</label><input type="text" id="nn-title" placeholder="Article headline"></div>
+        <div class="fg-2">
+          <div class="fg"><label>Category</label><select id="nn-cat"><option>Admissions</option><option>Career Tips</option><option>Placement</option><option>Events</option><option>Announcement</option></select></div>
+          <div class="fg"><label>Emoji</label><input type="text" id="nn-emoji" value="📰" style="max-width:80px"></div>
+        </div>
+        <div class="fg"><label>Summary (shown on card)</label><textarea id="nn-excerpt" rows="2" placeholder="Short summary..."></textarea></div>
+        <div class="fg"><label>Full Content</label><textarea id="nn-content" rows="5" placeholder="Full article text..."></textarea></div>
+        <div style="display:flex;gap:9px">
+          <button class="btn btn-mint" onclick="saveNews()">Publish</button>
+          <button class="tb-btn" onclick="toggleFP('fpNews')">Cancel</button>
+        </div>
+      </div>
+      <div class="atbl-wrap">
+        <table class="atbl"><thead><tr><th>Headline</th><th>Category</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody id="newsBody"><tr><td colspan="5" style="text-align:center;padding:28px;color:var(--gray)">Loading...</td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/shared.js"></script>
+<script>
+const APIBASE=(window.location.hostname==='localhost'||window.location.hostname==='127.0.0.1')?'http://localhost:5000/api':'/api';
+let allLeads=[],allCols=[],allJobs=[],allNewsA=[];
+
+// ── LOGIN ──
+async function doLogin(){
+  const pw=document.getElementById('adminPass').value.trim();
+  if(!pw){showLoginErr('Please enter password');return;}
+  const btn=document.getElementById('loginBtn');btn.textContent='Checking...';btn.disabled=true;
+  document.getElementById('loginErr').style.display='none';
+  try{
+    const res=await fetch(APIBASE+'/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pw})});
+    const data=await res.json();
+    if(!res.ok)throw new Error(data.error||'Login failed');
+    Auth.set(data.token);
+    showDashboard();
+  }catch(e){showLoginErr(e.message||'Wrong password. Check .env file.');}
+  btn.textContent='Login →';btn.disabled=false;
+}
+function showLoginErr(msg){const e=document.getElementById('loginErr');e.textContent=msg;e.style.display='block';}
+function doLogout(){Auth.clear();document.getElementById('admWrap').style.display='none';document.getElementById('loginWrap').style.display='flex';}
+
+function showDashboard(){
+  document.getElementById('loginWrap').style.display='none';
+  document.getElementById('admWrap').style.display='block';
+  loadAll();
+  setInterval(()=>{document.getElementById('admTime').textContent=new Date().toLocaleTimeString('en-IN');},1000);
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  if(Auth.has()){
+    fetch(APIBASE+'/auth/verify',{method:'POST',headers:{'Content-Type':'application/json','x-admin-token':Auth.get()}})
+      .then(r=>r.json()).then(d=>{if(d.valid)showDashboard();}).catch(()=>{});
+  }
+});
+
+function loadAll(){loadStats();loadLeads();loadCols();loadJobs();loadNews();}
+
+// ── STATS ──
+async function loadStats(){
+  try{
+    const res=await fetch(APIBASE+'/stats',{headers:{'x-admin-token':Auth.get()}});
+    const d=await res.json();
+    if(d.stats){
+      document.getElementById('st-total').textContent=d.stats.total||0;
+      document.getElementById('st-new').textContent=d.stats.newL||0;
+      document.getElementById('st-enrolled').textContent=d.stats.enrolled||0;
+      document.getElementById('st-cols').textContent=d.stats.colleges||0;
+      document.getElementById('st-jobs').textContent=d.stats.jobs||0;
+    }
+  }catch(e){}
+}
+
+// ── TABS ──
+function aTab(id,btn){
+  document.querySelectorAll('.at').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.ap').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('ap-'+id).classList.add('active');
+}
+function toggleFP(id){const p=document.getElementById(id);p.style.display=p.style.display==='none'||!p.style.display?'block':'none';}
+
+// ── LEADS ──
+async function loadLeads(){
+  try{
+    const res=await fetch(APIBASE+'/leads?limit=500',{headers:{'x-admin-token':Auth.get()}});
+    const d=await res.json();
+    allLeads=d.leads||[];renderLeads(allLeads);
+  }catch(e){showToast('Could not load leads','error');}
+}
+const sc={New:'st-new','Follow-up':'st-follow',Enrolled:'st-enrolled',Cold:'st-cold'};
+function renderLeads(list){
+  document.getElementById('leadCount').textContent=list.length+' leads';
+  if(!list.length){document.getElementById('leadsBody').innerHTML='<tr><td colspan="9" style="text-align:center;padding:24px;color:var(--gray)">No leads found.</td></tr>';return;}
+  document.getElementById('leadsBody').innerHTML=list.map(l=>`
+    <tr>
+      <td style="font-weight:700;color:var(--sage);white-space:nowrap">${l.leadId||'–'}</td>
+      <td><strong>${l.name}</strong></td>
+      <td><a href="tel:${l.phone}" style="color:var(--sage);white-space:nowrap">${l.phone}</a></td>
+      <td style="white-space:nowrap">${l.course}</td>
+      <td style="white-space:nowrap"><span class="stbadge st-cold" style="font-size:9px">${l.source}</span></td>
+      <td style="font-size:12px;white-space:nowrap">${fmtDate(l.createdAt)}</td>
+      <td><span class="stbadge ${sc[l.status]||'st-new'}">${l.status}</span></td>
+      <td><input type="text" value="${l.notes||''}" placeholder="Add note..." style="padding:3px 7px;border-radius:5px;border:1px solid var(--lt);font-size:12px;width:120px;background:#fff" onblur="updateLead('${l._id}',{notes:this.value})"></td>
+      <td style="white-space:nowrap">
+        <select style="padding:3px 6px;border-radius:5px;border:1px solid var(--lt);font-size:12px;background:#fff;-webkit-appearance:none" onchange="updateLead('${l._id}',{status:this.value})">
+          ${['New','Follow-up','Enrolled','Cold'].map(s=>`<option ${l.status===s?'selected':''}>${s}</option>`).join('')}
+        </select>
+        <button onclick="delLead('${l._id}')" style="background:none;border:1px solid var(--red);color:var(--red);padding:2px 7px;border-radius:4px;font-size:11px;cursor:pointer;margin-left:4px">✕</button>
+      </td>
+    </tr>`).join('');
+}
+function filterLeads(q){renderLeads(allLeads.filter(l=>l.name.toLowerCase().includes(q.toLowerCase())||l.phone.includes(q)||l.course.toLowerCase().includes(q)));}
+function filterLeadSt(s){renderLeads(s?allLeads.filter(l=>l.status===s):allLeads);}
+async function updateLead(id,data){
+  try{await fetch(APIBASE+'/leads/'+id,{method:'PUT',headers:{'Content-Type':'application/json','x-admin-token':Auth.get()},body:JSON.stringify(data)});loadStats();}
+  catch(e){showToast('Update failed','error');}
+}
+async function delLead(id){
+  if(!confirm('Delete this lead?'))return;
+  try{await fetch(APIBASE+'/leads/'+id,{method:'DELETE',headers:{'x-admin-token':Auth.get()}});await loadLeads();loadStats();}
+  catch(e){showToast('Error','error');}
+}
+function exportLeads(){
+  if(!allLeads.length){showToast('No leads to export','error');return;}
+  const rows=[['ID','Name','Phone','Email','Course','Source','Date','Status','Notes','College'],...allLeads.map(l=>[l.leadId||'',l.name,l.phone,l.email||'',l.course,l.source,fmtDate(l.createdAt),l.status,'"'+(l.notes||'').replace(/"/g,"'")+'"',l.college||''])];
+  downloadCSV(rows,'irpt_leads_'+new Date().toISOString().split('T')[0]+'.csv');
+  showToast('Leads exported!');
+}
+function downloadCSV(rows,filename){
+  const csv=rows.map(r=>r.join(',')).join('\n');
+  const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);a.download=filename;a.click();
+}
+
+// ── BULK UPLOAD ──
+function parseCSV(input){
+  const file=input.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const lines=e.target.result.trim().split('\n').filter(l=>l.trim());
+    // Skip header row if first line contains text "name" or "phone"
+    const start=lines[0].toLowerCase().includes('name')||lines[0].toLowerCase().includes('phone')?1:0;
+    const rows=lines.slice(start).map(l=>{
+      const p=l.split(',').map(x=>x.trim().replace(/^"|"$/g,''));
+      return{name:p[0],phone:p[1],course:p[2]||'General',source:p[3]||'Upload'};
+    }).filter(r=>r.name&&r.phone);
+    document.getElementById('csvPrev').innerHTML=`<div style="margin-top:12px;padding:12px;background:rgba(64,145,108,.08);border-radius:8px;color:var(--green);font-size:13px">
+      ✓ <strong>${rows.length} leads</strong> parsed from "${file.name}"
+      <button class="tb-btn prim" style="margin-left:12px" onclick='bulkUpload(${JSON.stringify(rows).replace(/"/g,"&quot;")})'>Import All</button>
+    </div>`;
+  };
+  reader.readAsText(file);
+}
+async function bulkUpload(rows){
+  try{
+    const res=await fetch(APIBASE+'/leads/bulk',{method:'POST',headers:{'Content-Type':'application/json','x-admin-token':Auth.get()},body:JSON.stringify({leads:rows})});
+    const d=await res.json();
+    showToast(d.imported+' leads imported!');
+    await loadLeads();loadStats();
+  }catch(e){showToast('Import failed: '+e.message,'error');}
+}
+async function addManualLead(){
+  const name=document.getElementById('al-name').value.trim();
+  const phone=document.getElementById('al-phone').value.trim();
+  if(!name||!phone){showToast('Name and phone required','error');return;}
+  try{
+    await fetch(APIBASE+'/leads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,phone,course:document.getElementById('al-course').value,source:document.getElementById('al-source').value})});
+    showToast('Lead added!');await loadLeads();loadStats();
+    document.getElementById('al-name').value='';document.getElementById('al-phone').value='';
+  }catch(e){showToast('Error','error');}
+}
+
+// ── COLLEGES ──
+async function loadCols(){
+  try{
+    const res=await fetch(APIBASE+'/colleges/admin',{headers:{'x-admin-token':Auth.get()}});
+    const d=await res.json();allCols=d.colleges||[];renderCols();
+  }catch(e){showToast('Could not load colleges','error');}
+}
+function renderCols(){
+  if(!allCols.length){document.getElementById('colsBody').innerHTML='<tr><td colspan="8" style="text-align:center;padding:24px;color:var(--gray)">No colleges yet.</td></tr>';return;}
+  document.getElementById('colsBody').innerHTML=allCols.map(c=>`
+    <tr>
+      <td><strong>${c.name}</strong></td>
+      <td>${c.course}</td>
+      <td style="white-space:nowrap">₹${c.fee.toLocaleString('en-IN')}</td>
+      <td>${c.seats}</td>
+      <td style="font-size:12px">${c.affiliation||'–'}</td>
+      <td>${c.badge?`<span class="cbadge cb-pop">${c.badge}</span>`:'–'}</td>
+      <td><button onclick="toggleCol('${c._id}',${!c.active})" style="background:none;border:1px solid ${c.active?'var(--green)':'var(--gray)'};color:${c.active?'var(--green)':'var(--gray)'};padding:3px 9px;border-radius:4px;font-size:11px;cursor:pointer;font-weight:600">${c.active?'Active':'Hidden'}</button></td>
+      <td><button onclick="delCol('${c._id}')" style="background:none;border:1px solid var(--red);color:var(--red);padding:3px 7px;border-radius:4px;font-size:11px;cursor:pointer">Delete</button></td>
+    </tr>`).join('');
+}
+async function saveCollege(){
+  const name=document.getElementById('ac-name').value.trim();const fee=+document.getElementById('ac-fee').value;
+  if(!name||!fee){showToast('Name and fee required','error');return;}
+  try{
+    await fetch(APIBASE+'/colleges',{method:'POST',headers:{'Content-Type':'application/json','x-admin-token':Auth.get()},body:JSON.stringify({name,course:document.getElementById('ac-course').value,fee,seats:+document.getElementById('ac-seats').value||60,affiliation:document.getElementById('ac-affil').value,badge:document.getElementById('ac-badge').value,description:document.getElementById('ac-desc').value})});
+    showToast('College added!');toggleFP('fpCol');await loadCols();loadStats();
+    ['ac-name','ac-fee','ac-seats','ac-affil','ac-desc'].forEach(id=>document.getElementById(id).value='');
+  }catch(e){showToast('Error: '+e.message,'error');}
+}
+async function toggleCol(id,active){
+  try{await fetch(APIBASE+'/colleges/'+id,{method:'PUT',headers:{'Content-Type':'application/json','x-admin-token':Auth.get()},body:JSON.stringify({active})});await loadCols();}
+  catch(e){showToast('Error','error');}
+}
+async function delCol(id){
+  if(!confirm('Remove this college?'))return;
+  try{await fetch(APIBASE+'/colleges/'+id,{method:'DELETE',headers:{'x-admin-token':Auth.get()}});await loadCols();loadStats();}
+  catch(e){showToast('Error','error');}
+}
+
+// ── JOBS ──
+async function loadJobs(){
+  try{
+    const res=await fetch(APIBASE+'/jobs/admin',{headers:{'x-admin-token':Auth.get()}});
+    const d=await res.json();allJobs=d.jobs||[];renderJobs();
+  }catch(e){showToast('Could not load jobs','error');}
+}
+function renderJobs(){
+  if(!allJobs.length){document.getElementById('jobsBody').innerHTML='<tr><td colspan="7" style="text-align:center;padding:24px;color:var(--gray)">No jobs posted yet.</td></tr>';return;}
+  const tc={'Full-time':'cb-pop','Internship':'cb-gov','Work from Home':'cb-bud','Part-time':'cb-top'};
+  document.getElementById('jobsBody').innerHTML=allJobs.map(j=>`
+    <tr>
+      <td><strong>${j.title}</strong></td>
+      <td>${j.company}</td>
+      <td><span class="cbadge ${tc[j.type]||'cb-pop'}">${j.type}</span></td>
+      <td>${j.category}</td>
+      <td style="font-size:12px">${j.salary||'–'}</td>
+      <td><button onclick="toggleJob('${j._id}',${!j.active})" style="background:none;border:1px solid ${j.active?'var(--green)':'var(--gray)'};color:${j.active?'var(--green)':'var(--gray)'};padding:3px 9px;border-radius:4px;font-size:11px;cursor:pointer;font-weight:600">${j.active?'Active':'Hidden'}</button></td>
+      <td><button onclick="delJob('${j._id}')" style="background:none;border:1px solid var(--red);color:var(--red);padding:3px 7px;border-radius:4px;font-size:11px;cursor:pointer">Delete</button></td>
+    </tr>`).join('');
+}
+async function saveJob(){
+  const title=document.getElementById('jb-title').value.trim();
+  const company=document.getElementById('jb-company').value.trim();
+  if(!title||!company){showToast('Title and company required','error');return;}
+  try{
+    await fetch(APIBASE+'/jobs',{method:'POST',headers:{'Content-Type':'application/json','x-admin-token':Auth.get()},body:JSON.stringify({title,company,location:document.getElementById('jb-loc').value,type:document.getElementById('jb-type').value,category:document.getElementById('jb-cat').value,salary:document.getElementById('jb-sal').value,experience:document.getElementById('jb-exp').value,applyLink:document.getElementById('jb-link').value,description:document.getElementById('jb-desc').value,requirements:document.getElementById('jb-req').value,active:true})});
+    showToast('Job posted!');toggleFP('fpJob');await loadJobs();loadStats();
+    ['jb-title','jb-company','jb-sal','jb-exp','jb-link','jb-desc','jb-req'].forEach(id=>document.getElementById(id).value='');
+  }catch(e){showToast('Error: '+e.message,'error');}
+}
+async function toggleJob(id,active){
+  try{await fetch(APIBASE+'/jobs/'+id,{method:'PUT',headers:{'Content-Type':'application/json','x-admin-token':Auth.get()},body:JSON.stringify({active})});await loadJobs();loadStats();}
+  catch(e){showToast('Error','error');}
+}
+async function delJob(id){
+  if(!confirm('Delete job?'))return;
+  try{await fetch(APIBASE+'/jobs/'+id,{method:'DELETE',headers:{'x-admin-token':Auth.get()}});await loadJobs();loadStats();}
+  catch(e){showToast('Error','error');}
+}
+// Export job applicants (leads with source = Job Page)
+function exportJobApplicants(){
+  const applicants=allLeads.filter(l=>l.source==='Job Page');
+  if(!applicants.length){showToast('No job applicants found','error');return;}
+  const rows=[['ID','Name','Phone','Email','Job Applied','Date','Status','Notes'],...applicants.map(l=>[l.leadId||'',l.name,l.phone,l.email||'',l.course,fmtDate(l.createdAt),l.status,'"'+(l.notes||'').replace(/"/g,"'")+'"'])];
+  downloadCSV(rows,'irpt_job_applicants_'+new Date().toISOString().split('T')[0]+'.csv');
+  showToast(applicants.length+' applicants exported!');
+}
+
+// ── NEWS ──
+async function loadNews(){
+  try{
+    const res=await fetch(APIBASE+'/news/admin',{headers:{'x-admin-token':Auth.get()}});
+    const d=await res.json();allNewsA=d.news||[];renderNewsAdmin();
+  }catch(e){showToast('Could not load news','error');}
+}
+function renderNewsAdmin(){
+  if(!allNewsA.length){document.getElementById('newsBody').innerHTML='<tr><td colspan="5" style="text-align:center;padding:24px;color:var(--gray)">No articles yet.</td></tr>';return;}
+  document.getElementById('newsBody').innerHTML=allNewsA.map(n=>`
+    <tr>
+      <td><strong>${n.emoji} ${n.title}</strong><div style="font-size:12px;color:var(--gray);margin-top:2px">${(n.excerpt||'').slice(0,60)}...</div></td>
+      <td><span class="stbadge st-new" style="font-size:9px">${n.category}</span></td>
+      <td style="font-size:12px;white-space:nowrap">${fmtDate(n.createdAt)}</td>
+      <td><button onclick="toggleNews('${n._id}',${!n.published})" style="background:none;border:1px solid ${n.published?'var(--green)':'var(--gray)'};color:${n.published?'var(--green)':'var(--gray)'};padding:3px 9px;border-radius:4px;font-size:11px;cursor:pointer;font-weight:600">${n.published?'Published':'Draft'}</button></td>
+      <td><button onclick="delNews('${n._id}')" style="background:none;border:1px solid var(--red);color:var(--red);padding:3px 7px;border-radius:4px;font-size:11px;cursor:pointer">Delete</button></td>
+    </tr>`).join('');
+}
+async function saveNews(){
+  const title=document.getElementById('nn-title').value.trim();
+  const content=document.getElementById('nn-content').value.trim();
+  if(!title||!content){showToast('Headline and content required','error');return;}
+  try{
+    await fetch(APIBASE+'/news',{method:'POST',headers:{'Content-Type':'application/json','x-admin-token':Auth.get()},body:JSON.stringify({title,excerpt:document.getElementById('nn-excerpt').value,content,category:document.getElementById('nn-cat').value,emoji:document.getElementById('nn-emoji').value||'📰',published:true})});
+    showToast('Article published!');toggleFP('fpNews');await loadNews();loadStats();
+    ['nn-title','nn-excerpt','nn-content'].forEach(id=>document.getElementById(id).value='');
+  }catch(e){showToast('Error: '+e.message,'error');}
+}
+async function toggleNews(id,pub){
+  try{await fetch(APIBASE+'/news/'+id,{method:'PUT',headers:{'Content-Type':'application/json','x-admin-token':Auth.get()},body:JSON.stringify({published:pub})});await loadNews();loadStats();}
+  catch(e){showToast('Error','error');}
+}
+async function delNews(id){
+  if(!confirm('Delete article?'))return;
+  try{await fetch(APIBASE+'/news/'+id,{method:'DELETE',headers:{'x-admin-token':Auth.get()}});await loadNews();loadStats();}
+  catch(e){showToast('Error','error');}
+}
+</script>
+</body></html>

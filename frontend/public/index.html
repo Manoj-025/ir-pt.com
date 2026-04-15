@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ir-pt Edtech | Career Guidance & College Admissions Bhopal</title>
+<meta name="description" content="ir-pt Edtech – Bhopal's #1 career counselling and college admission consultancy. Free guidance for 12th students. 50+ colleges. Call 82230 63535.">
+<meta name="keywords" content="career counselling Bhopal,college admission Bhopal,ir-pt Edtech,irpt edtech,BCA BBA BTech admission Bhopal,career guidance after 12th">
+<link rel="canonical" href="https://www.irptedtech.com/"><link rel="icon" href="/images/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+/* ── HERO ── */
+.hero{min-height:100vh;background:var(--ink);display:flex;flex-direction:column;justify-content:center;padding:100px 5% 60px;position:relative;overflow:hidden}
+.hblob{position:absolute;border-radius:50%;pointer-events:none}
+.hb1{top:-100px;right:-80px;width:500px;height:500px;background:radial-gradient(circle,rgba(212,160,23,.14) 0%,transparent 65%);animation:float 7s ease-in-out infinite}
+.hb2{bottom:-120px;left:5%;width:380px;height:380px;background:radial-gradient(circle,rgba(82,183,136,.09) 0%,transparent 65%);animation:float 9s ease-in-out infinite reverse}
+.hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(82,183,136,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(82,183,136,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.hi{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:center;position:relative;z-index:2}
+.hero-eye{display:inline-flex;align-items:center;gap:8px;background:rgba(212,160,23,.12);border:1px solid rgba(212,160,23,.28);color:var(--gold);padding:6px 16px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px}
+.hero-eye::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%;animation:ring 2s infinite}
+.hero h1{font-size:clamp(36px,5.5vw,62px);font-weight:900;color:#fff;line-height:1.08;margin-bottom:10px}
+.hero h1 em{color:var(--gold);font-style:normal;display:block}
+.hero-tag{font-size:clamp(13px,1.3vw,16px);color:var(--mint2);font-weight:600;letter-spacing:.5px;margin-bottom:16px}
+.hero-p{font-size:15px;color:rgba(255,255,255,.65);line-height:1.78;margin-bottom:32px;max-width:480px}
+.hero-ctas{display:flex;gap:11px;flex-wrap:wrap;margin-bottom:40px}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.hstat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px 12px;text-align:center;transition:all .3s}
+.hstat:hover{background:rgba(212,160,23,.08);border-color:rgba(212,160,23,.2);transform:translateY(-2px)}
+.hstat-n{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--gold)}
+.hstat-l{font-size:11px;color:rgba(255,255,255,.45);margin-top:3px}
+/* Hero card */
+.hcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:26px;position:relative}
+.hcard-badge{position:absolute;top:-14px;right:16px;background:var(--gold);color:var(--ink);padding:6px 14px;border-radius:8px;font-weight:800;font-size:12px;transform:rotate(2deg);box-shadow:0 6px 18px rgba(212,160,23,.35)}
+.hcard-logo{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.07)}
+.hcard-logo img{width:44px;height:44px;object-fit:contain;border-radius:8px;background:#fff;padding:2px}
+.hcl-brand{font-family:'Playfair Display',serif;font-weight:900;font-size:17px;color:#fff}
+.hcl-brand em{color:var(--gold);font-style:normal}
+.hcl-tag{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px}
+.ps{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.ps:last-child{border-bottom:none}
+.ps-n{width:27px;height:27px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--ink);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0}
+.ps-t{font-size:13px;color:rgba(255,255,255,.78);line-height:1.4}
+/* Services strip */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+.svc-card{background:var(--off);border-radius:14px;padding:24px;border:1.5px solid var(--lt);transition:all .3s;position:relative;overflow:hidden}
+.svc-card::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--gold),var(--mint));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.svc-card:hover{transform:translateY(-4px);box-shadow:var(--s-md);border-color:rgba(212,160,23,.2)}.svc-card:hover::after{transform:scaleX(1)}
+.svc-ic{width:46px;height:46px;background:linear-gradient(135deg,var(--gold-bg),rgba(82,183,136,.08));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:15px}
+.svc-card h3{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:8px;font-family:'Plus Jakarta Sans',sans-serif}
+.svc-card p{font-size:13px;color:var(--gray);line-height:1.65}
+.svc-lnk{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:var(--sage);margin-top:12px;text-decoration:none;transition:color .2s}.svc-lnk:hover{color:var(--gold)}
+/* Compare */
+.cmp-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;overflow:hidden}
+.cmp-head{display:grid;grid-template-columns:1.8fr 1fr 1.3fr;background:rgba(255,255,255,.06);padding:11px 18px}
+.cmp-head span{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.4);font-weight:700}
+.cmp-head span:last-child{color:var(--gold);text-align:center}
+.cmp-row{display:grid;grid-template-columns:1.8fr 1fr 1.3fr;padding:11px 18px;border-top:1px solid rgba(255,255,255,.05);align-items:center}
+.cmp-row:hover{background:rgba(255,255,255,.02)}
+.cmp-row span:first-child{font-size:13px;color:rgba(255,255,255,.7)}
+.no{color:#D62828;font-size:16px;text-align:center}.yes{color:var(--gold);font-size:14px;font-weight:700;text-align:center}
+/* Enquiry */
+.enq-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
+.enq-box{background:var(--off);border-radius:16px;padding:30px;border:1.5px solid var(--lt)}
+.enq-box h3{font-size:22px;font-weight:900;color:var(--ink);margin-bottom:5px}
+.enq-box>p{font-size:13px;color:var(--gray);margin-bottom:20px}
+.form-ok{display:none;text-align:center;padding:26px}
+.form-ok .sicon{font-size:50px;margin-bottom:12px}
+.form-ok h4{font-size:20px;font-weight:900;color:var(--ink);margin-bottom:8px}
+.form-ok p{color:var(--gray);font-size:14px;line-height:1.7}
+/* Testi */
+.tg{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:42px}
+.tc{background:#fff;border-radius:14px;padding:22px;border:1.5px solid var(--lt);transition:all .3s}
+.tc:hover{transform:translateY(-3px);box-shadow:var(--s-md);border-color:rgba(212,160,23,.2)}
+.stars{color:var(--gold);font-size:14px;letter-spacing:2px;margin-bottom:12px}
+.tc-text{font-size:13px;color:var(--gray);line-height:1.72;margin-bottom:16px;font-style:italic}
+.tc-au{display:flex;align-items:center;gap:11px}
+.tc-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--sage),var(--mint));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#fff;flex-shrink:0}
+.tc-nm{font-size:13px;font-weight:700;color:var(--ink);font-family:'Plus Jakarta Sans',sans-serif}
+.tc-cl{font-size:11px;color:var(--gray)}
+@media(max-width:960px){.hi,.enq-grid{grid-template-columns:1fr}.svc-grid,.tg{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.svc-grid,.tg{grid-template-columns:1fr}.hero-ctas{flex-direction:column}.hero-stats{grid-template-columns:repeat(3,1fr)}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"ir-pt Edtech","url":"https://www.irptedtech.com","logo":"https://www.irptedtech.com/images/logo.jpg","description":"Bhopal's premier career counselling and college admission consultancy.","address":{"@type":"PostalAddress","streetAddress":"LG-03, Sagar Landmark Complex, Ayodhya Bypass Road","addressLocality":"Bhopal","addressRegion":"Madhya Pradesh","addressCountry":"IN"},"telephone":"+918223063535","email":"edu.irpt@gmail.com"}</script>
+</head>
+<body>
+<div id="nav-slot"></div>
+<div id="ticker-slot" style="margin-top:68px"></div>
+<div id="wa-slot"></div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hblob hb1"></div><div class="hblob hb2"></div><div class="hgrid"></div>
+  <div class="hi">
+    <div>
+      <div class="hero-eye">Bhopal's #1 Career Consultancy</div>
+      <h1>Your Dream Career <em>Starts Here.</em></h1>
+      <div class="hero-tag">✦ We Can Help You To Find Your Dream Career ✦</div>
+      <p class="hero-p">Expert career guidance, college admissions, project support, job placement — trusted by 500+ students across Bhopal.</p>
+      <div class="hero-ctas">
+        <a href="/index.html#enquire" class="btn btn-gold">🎓 Free Counselling</a>
+        <a href="https://wa.me/918223063535?text=Hi!%20I%20want%20free%20counselling." target="_blank" class="btn btn-wa"><svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg> WhatsApp</a>
+        <a href="tel:8223063535" class="btn btn-ow">📞 Call Now</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><div class="hstat-n" data-target="50">0</div><div class="hstat-l">Colleges</div></div>
+        <div class="hstat"><div class="hstat-n" data-target="500">0</div><div class="hstat-l">Students Guided</div></div>
+        <div class="hstat"><div class="hstat-n" data-target="95">0</div><div class="hstat-l">% Success</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="hcard">
+        <div class="hcard-badge">🔥 Free Session</div>
+        <div class="hcard-logo">
+          <img src="/images/logo.jpg" alt="ir-pt Edtech">
+          <div><div class="hcl-brand">ir-pt <em>Edtech</em></div><div class="hcl-tag">We Can Help You Find Your Dream Career</div></div>
+        </div>
+        <div class="ps"><div class="ps-n">01</div><div class="ps-t">Self Assessment – Know your strengths</div></div>
+        <div class="ps"><div class="ps-n">02</div><div class="ps-t">Parents Analysis – Align expectations</div></div>
+        <div class="ps"><div class="ps-n">03</div><div class="ps-t">Budget Analysis – Best college in budget</div></div>
+        <div class="ps"><div class="ps-n">04</div><div class="ps-t">Course & College Selection – Perfect match</div></div>
+        <div class="ps"><div class="ps-n">05</div><div class="ps-t">Skill Dev + Placement Support</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES PREVIEW -->
+<section class="sp" style="background:#fff">
+  <div class="mw">
+    <div class="sec-c reveal">
+      <span class="sec-tag">What We Offer</span>
+      <h2 class="sec-h">Complete Career Support</h2>
+      <p class="sec-p">From 12th class to your first job — we're with you every step.</p>
+    </div>
+    <div class="svc-grid stagger">
+      <div class="svc-card reveal"><div class="svc-ic">🎯</div><h3>Career Counselling</h3><p>Psychometric tests + expert sessions to find the right career path based on your strengths.</p><a class="svc-lnk" href="/services.html">Learn More →</a></div>
+      <div class="svc-card reveal"><div class="svc-ic">🏫</div><h3>College Admissions</h3><p>Direct tie-ups with 50+ colleges in Bhopal. We handle applications, documents, and seat confirmation.</p><a class="svc-lnk" href="/colleges.html">Find Colleges →</a></div>
+      <div class="svc-card reveal"><div class="svc-ic">📋</div><h3>Project & Thesis Help</h3><p>Expert guidance for final year projects — engineering, MBA, BCA, MCA & more.</p><a class="svc-lnk" href="/services.html#project">Know More →</a></div>
+      <div class="svc-card reveal"><div class="svc-ic">💼</div><h3>Placement Support</h3><p>Resume building, mock interviews, and job referrals to Bhopal companies.</p><a class="svc-lnk" href="/jobs.html">Browse Jobs →</a></div>
+      <div class="svc-card reveal"><div class="svc-ic">🎓</div><h3>Skill Development</h3><p>Certified short-term courses in coding, digital marketing, communication & more.</p><a class="svc-lnk" href="/services.html#skills">See Courses →</a></div>
+      <div class="svc-card reveal"><div class="svc-ic">👨‍👩‍👧</div><h3>Parent Consultation</h3><p>Dedicated sessions to align career goals, college choices, and budget expectations.</p><a class="svc-lnk" href="/services.html#parents">Book Session →</a></div>
+    </div>
+    <div style="text-align:center;margin-top:28px"><a href="/services.html" class="btn btn-mint">View All Services →</a></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="sp" style="background:var(--ink)">
+  <div class="mw">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center">
+      <div class="reveal-l">
+        <span class="sec-tag">Why Choose Us</span>
+        <h2 class="sec-h" style="color:#fff">Others Guide.<br>We Get You Admitted.</h2>
+        <p class="sec-p" style="color:rgba(255,255,255,.55)">Real support, real results.</p>
+        <div style="display:flex;flex-direction:column;gap:18px;margin-top:24px">
+          <div style="display:flex;gap:13px;align-items:flex-start">
+            <div style="width:42px;height:42px;background:rgba(212,160,23,.1);border:1px solid rgba(212,160,23,.2);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0">🤝</div>
+            <div><div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:3px">Direct College Tie-ups</div><p style="font-size:13px;color:rgba(255,255,255,.5)">Official partnerships — no middlemen, no inflated fees.</p></div>
+          </div>
+          <div style="display:flex;gap:13px;align-items:flex-start">
+            <div style="width:42px;height:42px;background:rgba(212,160,23,.1);border:1px solid rgba(212,160,23,.2);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0">📲</div>
+            <div><div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:3px">Live Status Tracking</div><p style="font-size:13px;color:rgba(255,255,255,.5)">Track admission status anytime with your phone number.</p></div>
+          </div>
+          <div style="display:flex;gap:13px;align-items:flex-start">
+            <div style="width:42px;height:42px;background:rgba(212,160,23,.1);border:1px solid rgba(212,160,23,.2);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0">💰</div>
+            <div><div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:3px">Budget-first Approach</div><p style="font-size:13px;color:rgba(255,255,255,.5)">We find the best college within YOUR budget — always.</p></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:24px">
+          <a href="https://wa.me/918223063535" target="_blank" class="btn btn-wa btn-sm">WhatsApp Us</a>
+          <a href="tel:8223063535" class="btn btn-gold btn-sm">📞 Call Now</a>
+        </div>
+      </div>
+      <div class="cmp-box reveal-r">
+        <div class="cmp-head"><span>Feature</span><span style="text-align:center">Others</span><span>ir-pt Edtech</span></div>
+        <div class="cmp-row"><span>Career Assessment</span><span class="no">✗</span><span class="yes">✓</span></div>
+        <div class="cmp-row"><span>College Tie-ups</span><span class="no">✗</span><span class="yes">✓</span></div>
+        <div class="cmp-row"><span>Budget Planning</span><span class="no">✗</span><span class="yes">✓</span></div>
+        <div class="cmp-row"><span>Project / Thesis Help</span><span class="no">✗</span><span class="yes">✓</span></div>
+        <div class="cmp-row"><span>Placement + Job Support</span><span class="no">✗</span><span class="yes">✓</span></div>
+        <div class="cmp-row"><span>Status Tracking</span><span class="no">✗</span><span class="yes">✓</span></div>
+        <div class="cmp-row"><span>Parent Counselling</span><span class="no">✗</span><span class="yes">✓</span></div>
+        <div class="cmp-row"><span>No Hidden Charges</span><span class="no">✗</span><span class="yes">✓</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENQUIRY FORM -->
+<section class="sp" style="background:#fff" id="enquire">
+  <div class="mw">
+    <div class="enq-grid">
+      <div class="reveal-l">
+        <span class="sec-tag">Free Counselling</span>
+        <h2 class="sec-h">Talk to a Career Expert — It's Free</h2>
+        <p class="sec-p" style="margin:12px 0 0">Our counsellor calls you within 24 hours. No charges, no pressure.</p>
+        <div style="display:flex;flex-direction:column;gap:15px;margin:24px 0">
+          <div style="display:flex;gap:13px;align-items:flex-start">
+            <div style="width:38px;height:38px;background:rgba(45,106,79,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0">✓</div>
+            <div><div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:2px">Free 30-min session</div><p style="font-size:13px;color:var(--gray)">No cost, no pressure. Just honest practical guidance.</p></div>
+          </div>
+          <div style="display:flex;gap:13px;align-items:flex-start">
+            <div style="width:38px;height:38px;background:rgba(45,106,79,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0">📲</div>
+            <div><div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:2px">Track your enquiry</div><p style="font-size:13px;color:var(--gray)">Use your phone to check status anytime.</p></div>
+          </div>
+          <div style="display:flex;gap:13px;align-items:flex-start">
+            <div style="width:38px;height:38px;background:rgba(45,106,79,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0">🏆</div>
+            <div><div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:2px">500+ students guided</div><p style="font-size:13px;color:var(--gray)">Join hundreds who found their right path.</p></div>
+          </div>
+        </div>
+        <a href="https://wa.me/918223063535?text=Hi!%20I%20want%20free%20career%20counselling." target="_blank" style="display:inline-flex;align-items:center;gap:12px;background:rgba(37,211,102,.07);border:1px solid rgba(37,211,102,.2);border-radius:10px;padding:13px 17px;text-decoration:none;transition:all .2s" onmouseover="this.style.background='rgba(37,211,102,.13)'" onmouseout="this.style.background='rgba(37,211,102,.07)'">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span style="font-size:13px;color:#1a9c50;font-weight:600;line-height:1.4">WhatsApp for instant reply<br><strong>+91 82230 63535</strong></span>
+        </a>
+      </div>
+      <div class="reveal-r">
+        <div class="enq-box">
+          <h3>Get Free Counselling</h3>
+          <p>Fill this — we call you within 24 hours.</p>
+          <div id="formBody">
+            <div class="fg-2">
+              <div class="fg"><label>Full Name *</label><input type="text" id="lf-name" placeholder="Your full name"></div>
+              <div class="fg"><label>Phone *</label><input type="tel" id="lf-phone" placeholder="10-digit number" maxlength="10"></div>
+            </div>
+            <div class="fg"><label>Email</label><input type="email" id="lf-email" placeholder="your@email.com"></div>
+            <div class="fg-2">
+              <div class="fg"><label>Class / Year</label>
+                <select id="lf-class"><option value="">Select...</option><option>12th - Science</option><option>12th - Commerce</option><option>12th - Arts</option><option>Graduation 1st yr</option><option>Graduation 2nd yr</option><option>Graduation Final yr</option><option>Post Graduation</option></select>
+              </div>
+              <div class="fg"><label>Interested Course</label>
+                <select id="lf-course"><option value="">Select...</option><option>B.Tech</option><option>BCA</option><option>BBA</option><option>MBA</option><option>B.Com</option><option>B.Sc</option><option>Project Help</option><option>Job / Placement</option></select>
+              </div>
+            </div>
+            <div class="fg"><label>Message</label><textarea id="lf-msg" rows="2" placeholder="What are you looking for?"></textarea></div>
+            <button class="btn btn-dark btn-full" id="submitBtn" onclick="submitLead()" style="padding:14px;margin-top:6px">🎓 Submit — Get Free Call Back</button>
+            <a href="https://wa.me/918223063535?text=Hi!%20I%20want%20free%20counselling." target="_blank" class="btn btn-wa btn-full" style="padding:12px;margin-top:9px">💬 Or WhatsApp Directly</a>
+          </div>
+          <div class="form-ok" id="formOk">
+            <div class="sicon">🎉</div>
+            <h4>Enquiry Submitted!</h4>
+            <p>Our counsellor will call you within 24 hours.<br>Tracking ID: <strong id="trackId" style="color:var(--sage)">–</strong></p>
+            <a href="/track.html" class="btn btn-mint" style="margin-top:16px;display:inline-flex">Track My Status →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sp" style="background:var(--off)">
+  <div class="mw">
+    <div class="sec-c reveal">
+      <span class="sec-tag">Success Stories</span>
+      <h2 class="sec-h">Students Who Made It</h2>
+      <p class="sec-p">Real students, real results from Bhopal.</p>
+    </div>
+    <div class="tg stagger">
+      <div class="tc reveal"><div class="stars">★★★★★</div><p class="tc-text">"No idea which college after 12th. ir-pt Edtech's counsellor helped me find the right BCA college within my budget. Got admitted in just 1 week!"</p><div class="tc-au"><div class="tc-av">RK</div><div><div class="tc-nm">Rahul Kushwaha</div><div class="tc-cl">BCA – Bhopal College of Science</div></div></div></div>
+      <div class="tc reveal"><div class="stars">★★★★★</div><p class="tc-text">"The project team saved my final year. They helped me complete my B.Tech thesis in 3 weeks. Highly recommend for any engineering student."</p><div class="tc-au"><div class="tc-av">PS</div><div><div class="tc-nm">Priya Sharma</div><div class="tc-cl">B.Tech – LNCT Bhopal</div></div></div></div>
+      <div class="tc reveal"><div class="stars">★★★★★</div><p class="tc-text">"Got 3 interview calls in a month after placement support. Resume was redone and mock interviews built my confidence completely."</p><div class="tc-au"><div class="tc-av">AJ</div><div><div class="tc-nm">Amit Jain</div><div class="tc-cl">MBA – Barkatullah University</div></div></div></div>
+    </div>
+    <div style="text-align:center;margin-top:28px">
+      <a href="https://wa.me/918223063535?text=Hi!%20I%20want%20career%20guidance." target="_blank" class="btn btn-wa">Start Your Story on WhatsApp →</a>
+    </div>
+  </div>
+</section>
+
+<!-- POPUPS -->
+<div class="overlay" id="timedPop">
+  <div class="mbox">
+    <button class="mclose" onclick="document.getElementById('timedPop').classList.remove('show')">✕</button>
+    <div style="display:inline-block;background:var(--gold-bg);color:var(--gold2);border:1px solid rgba(212,160,23,.25);padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px">🌟 Personalized Guidance</div>
+    <h3 style="font-size:21px;font-weight:900;color:var(--ink);margin-bottom:8px">Get Your College List — Free!</h3>
+    <p style="font-size:14px;color:var(--gray);margin-bottom:18px;line-height:1.65">Tell us your stream & budget and we'll share the top 5 matching colleges in Bhopal within 1 hour on WhatsApp!</p>
+    <div style="display:flex;flex-direction:column;gap:9px">
+      <a href="https://wa.me/918223063535?text=Hi!%20I%20want%20personalized%20college%20recommendations." target="_blank" class="btn btn-wa btn-full" style="padding:14px">Get My College List on WhatsApp</a>
+      <div style="text-align:center;font-size:12px;color:var(--gray)">— or —</div>
+      <button class="btn btn-dark btn-full" style="padding:12px" onclick="document.getElementById('timedPop').classList.remove('show');document.getElementById('enquire').scrollIntoView({behavior:'smooth'})">Fill Enquiry Form</button>
+      <button style="background:none;border:none;color:var(--gray);font-size:12px;cursor:pointer;margin-top:4px" onclick="document.getElementById('timedPop').classList.remove('show')">No thanks, maybe later</button>
+    </div>
+  </div>
+</div>
+
+<div id="footer-slot"></div>
+<script src="/js/shared.js"></script>
+<script>
+// Inline WA SVG since this page loads before shared.js replaces it
+document.querySelectorAll('.btn-wa svg').forEach(el => {
+  if (!el.childNodes.length) el.innerHTML = '<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>';
+});
+
+async function submitLead() {
+  const name  = document.getElementById('lf-name').value.trim();
+  const phone = document.getElementById('lf-phone').value.trim();
+  if (!name || phone.length < 10) { showToast('Please enter valid name and 10-digit phone', 'error'); return; }
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = 'Submitting...'; btn.disabled = true;
+  try {
+    const r = await apiPost('/leads', {
+      name, phone,
+      email:     document.getElementById('lf-email').value,
+      classYear: document.getElementById('lf-class').value,
+      course:    document.getElementById('lf-course').value || 'General',
+      message:   document.getElementById('lf-msg').value,
+      source:    'Website',
+    });
+    document.getElementById('trackId').textContent = r.leadId;
+    document.getElementById('formBody').style.display = 'none';
+    document.getElementById('formOk').style.display = 'block';
+  } catch(e) {
+    showToast(e.message || 'Error. Please WhatsApp us.', 'error');
+    btn.textContent = '🎓 Submit — Get Free Call Back'; btn.disabled = false;
+  }
+}
+
+let popShown = false;
+setTimeout(() => { if (!popShown) { document.getElementById('timedPop').classList.add('show'); popShown = true; } }, 25000);
+document.addEventListener('mouseleave', e => { if (e.clientY < 10 && !popShown) { document.getElementById('timedPop').classList.add('show'); popShown = true; } });
+</script>
+</body>
+</html>

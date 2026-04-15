@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About Us | ir-pt Edtech Bhopal</title>
+<meta name="description" content="Learn about ir-pt Edtech — Bhopal trusted career guidance consultancy. Our story, mission, team, and journey since 2022.">
+<link rel="canonical" href="https://www.irptedtech.com/about.html"><link rel="icon" href="/images/logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+/* ── ABOUT HERO ── */
+.about-hero{background:var(--ink);padding:108px 5% 64px;position:relative;overflow:hidden}
+.about-hero::before{content:"";position:absolute;top:-80px;right:-60px;width:400px;height:400px;background:radial-gradient(circle,rgba(212,160,23,.14) 0%,transparent 65%);border-radius:50%;pointer-events:none}
+.about-hero::after{content:"";position:absolute;bottom:-60px;left:8%;width:280px;height:280px;background:radial-gradient(circle,rgba(82,183,136,.09) 0%,transparent 65%);border-radius:50%;pointer-events:none}
+.ah-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative;z-index:2}
+.ah-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
+.ahs{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px;text-align:center}
+.ahs-n{font-family:"Playfair Display",serif;font-size:26px;font-weight:900;color:var(--gold)}
+.ahs-l{font-size:11px;color:rgba(255,255,255,.45);margin-top:3px}
+.logo-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:32px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.logo-card img{width:80px;height:80px;object-fit:contain;border-radius:12px;background:#fff;padding:5px;margin-bottom:14px;animation:float 5s ease-in-out infinite}
+.lc-name{font-family:"Playfair Display",serif;font-weight:900;font-size:22px;color:#fff}
+.lc-name em{color:var(--gold);font-style:normal}
+.lc-tag{font-size:13px;color:var(--mint2);font-weight:600;margin-top:7px;line-height:1.5}
+.lc-addr{margin-top:16px;font-size:12px;color:rgba(255,255,255,.4);line-height:1.8}
+.lc-btns{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+/* Mission/Vision */
+.mv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.mv-card{border-radius:14px;padding:26px;text-align:center;transition:all .3s}
+.mv-card:hover{transform:translateY(-3px);box-shadow:var(--s-md)}
+.mv-c1{background:linear-gradient(135deg,var(--ink),var(--sage2))}
+.mv-c2{background:linear-gradient(135deg,var(--sage2),var(--sage))}
+.mv-c3{background:var(--gold-bg);border:1.5px solid rgba(212,160,23,.2)}
+.mv-icon{font-size:36px;margin-bottom:12px}
+.mv-title{font-size:16px;font-weight:800;margin-bottom:9px;font-family:"Plus Jakarta Sans",sans-serif}
+.mv-c1 .mv-title,.mv-c2 .mv-title{color:#fff}
+.mv-c3 .mv-title{color:var(--ink)}
+.mv-text{font-size:13px;line-height:1.68}
+.mv-c1 .mv-text,.mv-c2 .mv-text{color:rgba(255,255,255,.7)}
+.mv-c3 .mv-text{color:var(--gray)}
+/* Timeline — FIXED */
+.tl-section{background:var(--ink);padding:72px 5%;position:relative;overflow:hidden}
+.tl-section::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:2px;background:linear-gradient(to bottom,transparent,var(--gold) 8%,var(--gold) 92%,transparent);transform:translateX(-50%)}
+.tl-wrap{max-width:900px;margin:0 auto;position:relative;z-index:2}
+.tl-item{display:grid;grid-template-columns:1fr 48px 1fr;align-items:start;margin-bottom:32px}
+.tl-left{padding-right:28px;text-align:right}
+.tl-right{padding-left:28px;}
+.tl-mid{display:flex;flex-direction:column;align-items:center;padding-top:22px}
+.tl-dot{width:18px;height:18px;border-radius:50%;background:var(--gold);border:3px solid var(--ink);box-shadow:0 0 0 3px var(--gold);flex-shrink:0}
+.tl-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:18px}
+.tl-year{font-size:11px;font-weight:800;color:var(--gold);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+.tl-title{font-size:14px;font-weight:800;color:#fff;margin-bottom:6px;font-family:"Plus Jakarta Sans",sans-serif}
+.tl-body{font-size:13px;color:rgba(255,255,255,.5);line-height:1.65}
+/* odd items show left, even show right — hide empty side */
+.tl-item:nth-child(odd) .tl-right{display:none}
+.tl-item:nth-child(even) .tl-left{display:none}
+/* Values */
+.val-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+.val-card{background:#fff;border-radius:12px;padding:20px;border:1.5px solid var(--lt);text-align:center;transition:all .3s}
+.val-card:hover{transform:translateY(-3px);box-shadow:var(--s-md);border-color:rgba(212,160,23,.2)}
+.val-icon{font-size:32px;margin-bottom:10px}
+.val-title{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:7px;font-family:"Plus Jakarta Sans",sans-serif}
+.val-text{font-size:12px;color:var(--gray);line-height:1.6}
+/* CTA strip */
+.cta-strip{background:linear-gradient(135deg,var(--sage2),var(--ink));padding:56px 5%;text-align:center;position:relative;overflow:hidden}
+.cta-strip h2{color:#fff;font-size:clamp(22px,3.5vw,36px);margin-bottom:12px;position:relative;z-index:2}
+.cta-strip p{font-size:15px;color:rgba(255,255,255,.65);margin-bottom:24px;position:relative;z-index:2}
+.cta-btns{display:flex;gap:11px;justify-content:center;flex-wrap:wrap;position:relative;z-index:2}
+/* RESPONSIVE */
+@media(max-width:960px){
+  .ah-inner{grid-template-columns:1fr;gap:32px}
+  .mv-grid{grid-template-columns:1fr 1fr}
+  .val-grid{grid-template-columns:1fr 1fr}
+  /* Timeline mobile: single column */
+  .tl-section::before{left:20px}
+  .tl-item{grid-template-columns:40px 1fr;gap:0;margin-bottom:24px}
+  .tl-left,.tl-right{grid-column:2;text-align:left;padding-left:16px;padding-right:0}
+  .tl-item:nth-child(odd) .tl-right{display:block}
+  .tl-item:nth-child(even) .tl-left{display:block}
+  .tl-item:nth-child(odd) .tl-left{display:none}
+  .tl-item:nth-child(even) .tl-right{display:none}
+  .tl-item:nth-child(even) .tl-left{display:block}
+  .tl-mid{grid-column:1;padding-top:22px;align-items:center}
+}
+@media(max-width:600px){
+  .mv-grid{grid-template-columns:1fr}
+  .val-grid{grid-template-columns:1fr 1fr}
+  .ah-stats{grid-template-columns:repeat(3,1fr)}
+  .tl-section{padding:52px 4%}
+}
+</style>
+</head>
+<body>
+<div id="nav-slot"></div>
+<div id="wa-slot"></div>
+
+<!-- ABOUT HERO -->
+<section class="about-hero">
+  <div class="ah-inner">
+    <div>
+      <span style="display:inline-block;background:rgba(212,160,23,.12);border:1px solid rgba(212,160,23,.28);color:var(--gold);padding:6px 16px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:18px">Since 2022 · Bhopal, MP</span>
+      <h1 style="font-size:clamp(32px,5vw,56px);font-weight:900;color:#fff;line-height:1.1;margin-bottom:14px">Turning Confusion<br>Into <em style="color:var(--gold);font-style:normal">Clarity.</em></h1>
+      <p style="font-size:15px;color:rgba(255,255,255,.62);line-height:1.78;margin-bottom:6px">ir-pt Edtech was born from one simple belief — every student deserves honest, personalised guidance to find their right career path. No sales pressure. No hidden fees. Just real help.</p>
+      <div class="ah-stats">
+        <div class="ahs"><div class="ahs-n" data-target="50">0</div><div class="ahs-l">Colleges</div></div>
+        <div class="ahs"><div class="ahs-n" data-target="500">0</div><div class="ahs-l">Students</div></div>
+        <div class="ahs"><div class="ahs-n" data-target="95">0</div><div class="ahs-l">% Success</div></div>
+      </div>
+    </div>
+    <div class="logo-card reveal-s">
+      <img src="/images/logo.jpg" alt="ir-pt Edtech Logo">
+      <div class="lc-name">ir-pt <em>Edtech</em></div>
+      <div class="lc-tag">"We Can Help You Find Your Dream Career"</div>
+      <div class="lc-addr">📍 LG-03, Sagar Landmark Complex<br>Ayodhya Bypass Road, Bhopal, MP<br><br>📞 82230 63535 · ✉ edu.irpt@gmail.com</div>
+      <div class="lc-btns">
+        <a href="https://wa.me/918223063535" target="_blank" class="btn btn-wa btn-sm"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp</a>
+        <a href="tel:8223063535" class="btn btn-gold btn-sm">📞 Call</a>
+      </div>
+    </div>
+  </div>
+</section>
+<div id="ticker-slot"></div>
+
+<!-- MISSION / VISION -->
+<section class="sp" style="background:var(--off)">
+  <div class="mw">
+    <div class="sec-c reveal"><span class="sec-tag">Who We Are</span><h2 class="sec-h">Mission, Vision & Promise</h2></div>
+    <div class="mv-grid stagger">
+      <div class="mv-card mv-c1 reveal-s"><div class="mv-icon">🎯</div><div class="mv-title">Our Mission</div><p class="mv-text">To provide every student in Bhopal with honest, expert career guidance — regardless of background or budget. Quality guidance should be accessible to all.</p></div>
+      <div class="mv-card mv-c2 reveal-s"><div class="mv-icon">🔭</div><div class="mv-title">Our Vision</div><p class="mv-text">To become Central India&apos;s most trusted career consultancy — where every graduate is job-ready, confident, and on the right path.</p></div>
+      <div class="mv-card mv-c3 reveal-s"><div class="mv-icon">💛</div><div class="mv-title">Our Promise</div><p class="mv-text">We never earn from students — we earn from college partnerships. Our advice is always in your interest. No pressure. No misleading advice. Ever.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY TIMELINE -->
+<section class="tl-section">
+  <div class="mw">
+    <div class="sec-c reveal" style="margin-bottom:44px">
+      <span class="sec-tag" style="background:rgba(212,160,23,.12);color:var(--gold);border-color:rgba(212,160,23,.25)">Our Journey</span>
+      <h2 class="sec-h" style="color:#fff">From Idea to <em style="color:var(--gold);font-style:normal">Impact.</em></h2>
+      <p class="sec-p" style="color:rgba(255,255,255,.55)">Every milestone that shaped who we are today.</p>
+    </div>
+    <div class="tl-wrap">
+      <div class="tl-item reveal">
+        <div class="tl-left"><div class="tl-card"><div class="tl-year">2022 · Q1</div><div class="tl-title">ir-pt Edtech Founded</div><p class="tl-body">Started with a simple desk in Bhopal. Our founders noticed that 12th class students had no reliable, unbiased career guidance. ir-pt Edtech was born to fill that gap.</p></div></div>
+        <div class="tl-mid"><div class="tl-dot pulse"></div></div>
+        <div class="tl-right"></div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-left"></div>
+        <div class="tl-mid"><div class="tl-dot"></div></div>
+        <div class="tl-right"><div class="tl-card"><div class="tl-year">2022 · Q2</div><div class="tl-title">First 50 Students Guided</div><p class="tl-body">Within 6 months, we guided 50+ students into the right colleges. Word spread fast — parents began recommending ir-pt Edtech to their friends and neighbours.</p></div></div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-left"><div class="tl-card"><div class="tl-year">2023 · Q3</div><div class="tl-title">20 College Partnerships</div><p class="tl-body">Established official partnerships with 20+ Bhopal colleges. We could now secure priority seats and better deals for students — a key milestone.</p></div></div>
+        <div class="tl-mid"><div class="tl-dot"></div></div>
+        <div class="tl-right"></div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-left"></div>
+        <div class="tl-mid"><div class="tl-dot"></div></div>
+        <div class="tl-right"><div class="tl-card"><div class="tl-year">2023 · Q4</div><div class="tl-title">Project &amp; Thesis Support</div><p class="tl-body">Launched dedicated service for final year students needing help with projects, dissertations, and thesis. Served 100+ students in the first 3 months.</p></div></div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-left"><div class="tl-card"><div class="tl-year">2024 · Q5</div><div class="tl-title">200+ Students · Placement Launch</div><p class="tl-body">Crossed the 200 students milestone and launched our placement support division — resume building, mock interviews, and corporate tie-ups.</p></div></div>
+        <div class="tl-mid"><div class="tl-dot"></div></div>
+        <div class="tl-right"></div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-left"></div>
+        <div class="tl-mid"><div class="tl-dot"></div></div>
+        <div class="tl-right"><div class="tl-card"><div class="tl-year">2024 · Q6</div><div class="tl-title">New Office — Sagar Landmark</div><p class="tl-body">Moved to LG-03, Sagar Landmark Complex, Ayodhya Bypass Road — a proper consultancy space with dedicated counselling rooms and student facilities.</p></div></div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-left"><div class="tl-card"><div class="tl-year">2025 · Now</div><div class="tl-title">500+ Students · 50+ Colleges · Job Finder</div><p class="tl-body">ir-pt Edtech has helped 500+ students, partnered with 50+ colleges, and launched a Job Finder platform — Bhopal&apos;s one-stop career solution.</p></div></div>
+        <div class="tl-mid"><div class="tl-dot pulse"></div></div>
+        <div class="tl-right"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="sp" style="background:var(--off)">
+  <div class="mw">
+    <div class="sec-c reveal"><span class="sec-tag">Our Values</span><h2 class="sec-h">What We Stand For</h2></div>
+    <div class="val-grid stagger">
+      <div class="val-card reveal"><div class="val-icon">🔍</div><div class="val-title">Transparency</div><p class="val-text">No hidden fees. No misleading claims. You always know what you get and why we recommend it.</p></div>
+      <div class="val-card reveal"><div class="val-icon">❤️</div><div class="val-title">Student First</div><p class="val-text">Our loyalty is to the student. We recommend what is best for YOU, not what pays us more.</p></div>
+      <div class="val-card reveal"><div class="val-icon">🏃</div><div class="val-title">Speed</div><p class="val-text">Admissions don&apos;t wait. Most students get seat confirmation within 1–2 weeks with our help.</p></div>
+      <div class="val-card reveal"><div class="val-icon">🤝</div><div class="val-title">Long-term Support</div><p class="val-text">We don&apos;t disappear after admission. We stay through college, projects, and your first job.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <div style="position:absolute;top:-60px;right:-40px;width:260px;height:260px;background:radial-gradient(circle,rgba(212,160,23,.18) 0%,transparent 65%);border-radius:50%"></div>
+  <h2>Ready to Find Your Dream Career?</h2>
+  <p>Talk to our counsellor today — completely free, no commitments.</p>
+  <div class="cta-btns">
+    <a href="https://wa.me/918223063535?text=Hi!%20I%20want%20free%20career%20counselling." target="_blank" class="btn btn-wa"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp Us Now</a>
+    <a href="tel:8223063535" class="btn btn-gold">📞 82230 63535</a>
+    <a href="/services.html" class="btn btn-ow">View All Services →</a>
+  </div>
+</div>
+<div id="footer-slot"></div>
+<script src="/js/shared.js"></script>
+</body></html>

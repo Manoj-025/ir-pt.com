@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FAQ | Career & College Admissions Bhopal | ir-pt Edtech</title>
+<meta name="description" content="Frequently asked questions about career guidance, college admissions, fees, and placement support in Bhopal from ir-pt Edtech.">
+<meta name="keywords" content="career guidance FAQ Bhopal,college admission questions,after 12th career options,ir-pt Edtech FAQ">
+<link rel="canonical" href="https://www.irptedtech.com/faq.html"><link rel="icon" href="/images/logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+.faq-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 18px}
+.ft{padding:8px 18px;border-radius:20px;border:1.5px solid var(--lt);background:#fff;color:var(--gray);font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
+.ft.active,.ft:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.faq-list{display:flex;flex-direction:column;gap:9px;max-width:800px}
+.faq-item{background:#fff;border-radius:10px;border:1.5px solid var(--lt);overflow:hidden;transition:border .2s}
+.faq-item:hover{border-color:rgba(212,160,23,.28)}
+.faq-item.open{border-color:rgba(212,160,23,.4)}
+.faq-q{padding:15px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;user-select:none}
+.faq-qt{font-size:14px;font-weight:700;color:var(--ink);line-height:1.5}
+.faq-ic{color:var(--gold);font-size:22px;flex-shrink:0;transition:transform .25s;line-height:1;width:22px;text-align:center}
+.faq-item.open .faq-ic{transform:rotate(45deg)}
+.faq-a{display:none;padding:0 18px 15px;font-size:14px;color:var(--gray);line-height:1.78}
+.faq-item.open .faq-a{display:block}
+</style>
+</head>
+<body>
+<div id="nav-slot"></div><div id="wa-slot"></div>
+<div class="page-hdr">
+  <div class="mw">
+    <div class="breadcrumb"><a href="/index.html">Home</a> → FAQ</div>
+    <h1>Frequently Asked Questions</h1>
+    <p>Everything students and parents ask before taking the first step.</p>
+  </div>
+</div>
+<div id="ticker-slot"></div>
+
+<section class="sp" style="background:var(--off)">
+  <div class="mw">
+    <div class="faq-tabs">
+      <button class="ft active" onclick="switchFaq('students',this)">For Students</button>
+      <button class="ft" onclick="switchFaq('parents',this)">For Parents</button>
+      <button class="ft" onclick="switchFaq('admissions',this)">Admissions</button>
+      <button class="ft" onclick="switchFaq('services',this)">Services</button>
+    </div>
+    <div class="faq-list" id="faqList"></div>
+    <div style="margin-top:28px;display:flex;gap:10px;flex-wrap:wrap">
+      <a href="https://wa.me/918223063535?text=Hi!%20I%20have%20a%20question%20about%20career%20guidance." target="_blank" class="btn btn-wa"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Ask on WhatsApp</a>
+      <a href="tel:8223063535" class="btn btn-gold">📞 Call for Answer</a>
+    </div>
+  </div>
+</section>
+<div id="footer-slot"></div>
+<script src="/js/shared.js"></script>
+<script>
+const faqData={
+  students:[
+    {q:"Which course should I take after 12th Science?",a:"It depends on your interests. If you like computers — B.Tech CS or BCA. Biology — MBBS, B.Pharma. Not sure? Book a free session — we assess your strengths and find the best fit."},
+    {q:"What is the difference between BCA and B.Tech?",a:"B.Tech is a 4-year engineering degree (fees ₹80K–1.2L/yr). BCA is a 3-year computer applications degree (fees ₹35K–60K/yr). Both lead to IT careers. BCA is more affordable and shorter."},
+    {q:"What is the last date for admissions 2026–27?",a:"Most Bhopal colleges close by June–July 2026. Some accept till September. Contact us immediately to check seat availability and avoid missing deadlines."},
+    {q:"Can I change my course after 1st year?",a:"Yes, in some cases. Branch change in engineering requires a qualifying CGPA. For full course changes, re-application is needed. Our counsellors will guide you."},
+    {q:"Is counselling really free?",a:"Completely free! We earn through college partnerships, not from students. Initial session + personalised guidance = ₹0. No hidden charges whatsoever."},
+    {q:"What career options are there after 12th Commerce?",a:"Top options: BBA then MBA, CA (Chartered Accountancy), B.Com, Digital Marketing, Finance and Banking, E-Commerce. Book a session to find the right fit for your specific strengths."}
+  ],
+  parents:[
+    {q:"How do I know which college is best for my child?",a:"Look at placement records, infrastructure, NAAC rating, and fees. We provide personalised comparisons of top Bhopal colleges based on your child's stream, interests, and your budget."},
+    {q:"What is a reasonable college fee in Bhopal?",a:"Government colleges: ₹15K–35K/yr. Private colleges: ₹40K–1.2L/yr. Engineering tends to be higher. We find the best value options without compromising quality."},
+    {q:"Is it safe to pay through your consultancy?",a:"We never collect college fees. All payments go directly to the college. We only assist the admission process. 100% transparent and safe."},
+    {q:"What if my child is not placed after college?",a:"We provide post-placement support even after graduation. Our network includes Bhopal companies and beyond. We stay with your child until they are placed."},
+    {q:"Can we visit your office?",a:"Absolutely! LG-03, Sagar Landmark Complex, Ayodhya Bypass Road, Bhopal. Monday to Saturday, 10am to 6pm. No appointment needed."},
+    {q:"What makes ir-pt Edtech different from others?",a:"We are the only consultancy in Bhopal that offers career counselling, college admissions, project help, placement support, and a job finder — all under one roof. And our initial guidance is always free."}
+  ],
+  admissions:[
+    {q:"What documents are needed for admission?",a:"10th and 12th marksheets, transfer certificate, character certificate, passport photos, Aadhaar card, domicile certificate. Some colleges also need income certificate for scholarships."},
+    {q:"Can I get a scholarship?",a:"Yes! Merit-based scholarships are available at most colleges. Government scholarships through MP Scholarship Portal for OBC/SC/ST students. We help you apply for all relevant scholarships."},
+    {q:"What if I scored low marks in 12th?",a:"Many good colleges accept 45–50% marks. Some offer bridging courses or management quota seats. We will find the right match for your score — no judgement."},
+    {q:"Can out-of-state students apply?",a:"Yes! Most private colleges accept students from other states. Some have management quota seats for this. Contact us with your details and we will check eligibility."}
+  ],
+  services:[
+    {q:"What is project and thesis support?",a:"We help with final year projects — topic selection, synopsis, implementation, report writing, and viva preparation. Over 200 students helped across engineering, MBA, BCA, and MCA."},
+    {q:"How long does placement support take?",a:"Resume building: 3–5 days. Mock interviews: 1 week. Job referrals: ongoing. Most students get interview calls within 2–4 weeks."},
+    {q:"Do you have certified skill courses?",a:"Yes! Short-term certified courses (1–3 months) in Web Development, Digital Marketing, MS Office, Communication Skills. Includes certification recognised by employers."},
+    {q:"Can I track my admission status online?",a:"Yes! Visit our Track Status page and enter your registered phone number to see a live timeline of your application progress."}
+  ]
+};
+
+function switchFaq(tab,btn){
+  document.querySelectorAll('.ft').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('faqList').innerHTML=faqData[tab].map((f,i)=>`
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><div class="faq-qt">${f.q}</div><div class="faq-ic">+</div></div><div class="faq-a">${f.a}</div></div>`).join('');
+}
+switchFaq('students',document.querySelector('.ft'));
+</script>
+</body></html>
