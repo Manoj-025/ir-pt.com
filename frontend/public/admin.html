@@ -156,29 +156,113 @@ body{background:var(--off)}
 
     <!-- COLLEGES -->
     <div class="ap" id="ap-colleges">
-      <div class="tb">
-        <button class="tb-btn prim" onclick="toggleFP('fpCol')">+ Add College</button>
+
+      <!-- Toolbar -->
+      <div class="tb" style="flex-wrap:wrap">
+        <button class="tb-btn prim" onclick="openColForm(null)">+ Add College</button>
+        <button class="tb-btn" style="background:var(--gold-bg);border-color:rgba(212,160,23,.3);color:var(--gold2);font-weight:700" onclick="toggleFP('fpBulk')">⬆ Bulk Upload CSV</button>
+        <button class="tb-btn gold" onclick="downloadColTemplate()">⬇ CSV Template</button>
         <button class="tb-btn" onclick="loadCols()">↻ Refresh</button>
+        <input type="text" class="tb-inp" id="colSearch" placeholder="🔍 Search college / course / affiliation..." style="min-width:200px;flex:1" oninput="filterCols(this.value)">
+        <span class="tb-count" id="colCount"></span>
       </div>
+
+      <!-- Single add / edit form -->
       <div class="fp" id="fpCol">
-        <h4>Add New College</h4>
+        <h4 id="fpColTitle">Add New College</h4>
+        <input type="hidden" id="ac-id">
         <div class="fg-2">
           <div class="fg"><label>College Name *</label><input type="text" id="ac-name" placeholder="e.g. LNCT Bhopal"></div>
-          <div class="fg"><label>Course *</label><input type="text" placeholder="B.Tech" id="ac-course"></input></div>
+          <div class="fg"><label>Course *</label><input type="text" id="ac-course" placeholder="e.g. B.Tech / BCA / MBA"></div>
           <div class="fg"><label>Annual Fee ₹ *</label><input type="number" id="ac-fee" placeholder="e.g. 75000"></div>
           <div class="fg"><label>Seats</label><input type="number" id="ac-seats" placeholder="60"></div>
-          <div class="fg"><label>Affiliation</label><input type="text" id="ac-affil" placeholder="e.g. RGPV"></div>
-          <div class="fg"><label>Badge</label><select id="ac-badge"><option value="">None</option><option>Popular</option><option>Budget</option><option>Top Ranked</option><option>Govt</option><option>New</option></select></div>
+          <div class="fg"><label>Affiliation</label><input type="text" id="ac-affil" placeholder="e.g. RGPV, AICTE"></div>
+          <div class="fg"><label>Badge</label>
+            <select id="ac-badge">
+              <option value="">None</option><option>Popular</option><option>Budget</option>
+              <option>Top Ranked</option><option>Govt</option><option>New</option>
+            </select>
+          </div>
         </div>
-        <div class="fg"><label>Description</label><textarea id="ac-desc" rows="2" placeholder="Short description..."></textarea></div>
+        <div class="fg"><label>Description (optional)</label><textarea id="ac-desc" rows="2" placeholder="Short description..."></textarea></div>
         <div style="display:flex;gap:9px">
-          <button class="btn btn-mint" onclick="saveCollege()">Save College</button>
-          <button class="tb-btn" onclick="toggleFP('fpCol')">Cancel</button>
+          <button class="btn btn-mint" id="saveColBtn" onclick="saveCollege()">Save College</button>
+          <button class="tb-btn" onclick="closeColForm()">Cancel</button>
         </div>
       </div>
+
+      <!-- BULK UPLOAD PANEL -->
+      <div class="fp" id="fpBulk" style="border-color:rgba(212,160,23,.35);background:#fffdf5">
+        <h4 style="color:var(--gold2);margin-bottom:14px">⬆ Bulk Upload Colleges from CSV</h4>
+
+        <!-- Format guide -->
+        <div style="background:#fff;border-radius:8px;padding:12px 14px;margin-bottom:12px;font-size:13px;border:1px solid var(--lt)">
+          <strong style="display:block;margin-bottom:6px;color:var(--ink)">Column Order (no header needed):</strong>
+          <code style="font-size:12px;color:var(--sage);font-family:monospace;background:var(--off);padding:5px 10px;border-radius:5px;display:block;margin-bottom:8px">name, course, fee, seats, affiliation, badge, description</code>
+          <div style="font-size:12px;color:var(--gray);line-height:1.75">
+            ✅ <b>name</b> — College name (required) &nbsp;|&nbsp;
+            ✅ <b>course</b> — BCA / B.Tech / MBA etc. (required) &nbsp;|&nbsp;
+            ✅ <b>fee</b> — Annual fee as number (required, no ₹ symbol)<br>
+            ⬜ <b>seats</b> — Number of seats (optional, default 60) &nbsp;|&nbsp;
+            ⬜ <b>affiliation</b> — RGPV, AICTE etc. (optional) &nbsp;|&nbsp;
+            ⬜ <b>badge</b> — Popular / Budget / Top Ranked / Govt / New (optional)
+          </div>
+        </div>
+
+        <!-- Example -->
+        <div style="background:#fff;border:1px dashed var(--lt);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:12px;overflow-x:auto">
+          <strong style="color:var(--gray);display:block;margin-bottom:5px;font-size:11px;text-transform:uppercase;letter-spacing:.5px">Example rows:</strong>
+          <div style="font-family:monospace;color:var(--ink);white-space:nowrap;line-height:2">
+            LNCT Bhopal,B.Tech,95000,120,RGPV,Popular,Top engineering college<br>
+            BCS Bhopal,BCA,42000,60,Barkatullah Univ,Budget,Affordable BCA<br>
+            MANIT Bhopal,B.Tech,12000,60,NIT,Govt,Government NIT college<br>
+            SIRTS,MBA,65000,60,RGPV,Top Ranked,
+          </div>
+        </div>
+
+        <!-- Drop zone -->
+        <div class="upz" id="colDropZone"
+          onclick="document.getElementById('colCsvFile').click()"
+          ondragover="event.preventDefault();this.style.borderColor='var(--gold)';this.style.background='var(--gold-bg)'"
+          ondragleave="this.style.borderColor='';this.style.background=''"
+          ondrop="event.preventDefault();this.style.borderColor='';this.style.background='';handleColDrop(event)">
+          <div style="font-size:36px">📁</div>
+          <h4>Click to Select or Drag & Drop CSV</h4>
+          <p>Supports .csv and .txt files</p>
+          <input type="file" id="colCsvFile" accept=".csv,.txt" style="display:none" onchange="parseColCSV(this.files[0])">
+        </div>
+
+        <!-- Preview area -->
+        <div id="colCsvPreview" style="margin-top:12px"></div>
+
+        <!-- Import button (shown after parse) -->
+        <div id="colBulkActions" style="display:none;margin-top:12px;display:none">
+          <button class="btn btn-gold" id="colImportBtn" onclick="importColsBulk()">⬆ Import All Valid Rows</button>
+          <button class="tb-btn" style="margin-left:8px" onclick="clearColPreview()">✕ Clear</button>
+        </div>
+
+        <button class="tb-btn" style="margin-top:14px" onclick="toggleFP('fpBulk')">Close Panel</button>
+      </div>
+
+      <!-- Colleges table -->
       <div class="atbl-wrap">
-        <table class="atbl"><thead><tr><th>Name</th><th>Course</th><th>Fee/yr</th><th>Seats</th><th>Affiliation</th><th>Badge</th><th>Status</th><th>Actions</th></tr></thead>
-        <tbody id="colsBody"><tr><td colspan="8" style="text-align:center;padding:28px;color:var(--gray)">Loading...</td></tr></tbody></table>
+        <table class="atbl">
+          <thead>
+            <tr>
+              <th style="min-width:150px">Name</th>
+              <th style="min-width:100px">Course</th>
+              <th>Fee/yr</th>
+              <th>Seats</th>
+              <th>Affiliation</th>
+              <th>Badge</th>
+              <th>Status</th>
+              <th style="min-width:140px">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="colsBody">
+            <tr><td colspan="8" style="text-align:center;padding:28px;color:var(--gray)">Loading...</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
@@ -396,43 +480,325 @@ async function addManualLead(){
 }
 
 // ── COLLEGES ──
+let parsedColRows = [];
+
 async function loadCols(){
   try{
     const res=await fetch(APIBASE+'/colleges/admin',{headers:{'x-admin-token':Auth.get()}});
-    const d=await res.json();allCols=d.colleges||[];renderCols();
+    const d=await res.json();
+    allCols=d.colleges||[];
+    renderCols(allCols);
   }catch(e){showToast('Could not load colleges','error');}
 }
-function renderCols(){
-  if(!allCols.length){document.getElementById('colsBody').innerHTML='<tr><td colspan="8" style="text-align:center;padding:24px;color:var(--gray)">No colleges yet.</td></tr>';return;}
-  document.getElementById('colsBody').innerHTML=allCols.map(c=>`
-    <tr>
+
+function renderCols(list){
+  const cnt = document.getElementById('colCount');
+  if(cnt) cnt.textContent = list.length + ' colleges';
+  if(!list.length){
+    document.getElementById('colsBody').innerHTML='<tr><td colspan="8" style="text-align:center;padding:28px;color:var(--gray)">No colleges yet.</td></tr>';
+    return;
+  }
+  const badgeCls = {Popular:'cb-pop',Budget:'cb-bud','Top Ranked':'cb-top',Govt:'cb-gov',New:'cb-pop'};
+  document.getElementById('colsBody').innerHTML=list.map(c=>`
+    <tr id="crow_${c._id}">
       <td><strong>${c.name}</strong></td>
       <td>${c.course}</td>
-      <td style="white-space:nowrap">₹${c.fee.toLocaleString('en-IN')}</td>
-      <td>${c.seats}</td>
+      <td style="white-space:nowrap;font-weight:700">₹${c.fee.toLocaleString('en-IN')}</td>
+      <td>${c.seats||60}</td>
       <td style="font-size:12px">${c.affiliation||'–'}</td>
-      <td>${c.badge?`<span class="cbadge cb-pop">${c.badge}</span>`:'–'}</td>
-      <td><button onclick="toggleCol('${c._id}',${!c.active})" style="background:none;border:1px solid ${c.active?'var(--green)':'var(--gray)'};color:${c.active?'var(--green)':'var(--gray)'};padding:3px 9px;border-radius:4px;font-size:11px;cursor:pointer;font-weight:600">${c.active?'Active':'Hidden'}</button></td>
-      <td><button onclick="delCol('${c._id}')" style="background:none;border:1px solid var(--red);color:var(--red);padding:3px 7px;border-radius:4px;font-size:11px;cursor:pointer">Delete</button></td>
+      <td>${c.badge?`<span class="cbadge ${badgeCls[c.badge]||'cb-pop'}">${c.badge}</span>`:'–'}</td>
+      <td>
+        <button onclick="toggleCol('${c._id}',${!c.active})"
+          style="background:none;border:1px solid ${c.active?'var(--green)':'var(--gray)'};color:${c.active?'var(--green)':'var(--gray)'};padding:3px 9px;border-radius:4px;font-size:11px;cursor:pointer;font-weight:600">
+          ${c.active?'Active':'Hidden'}
+        </button>
+      </td>
+      <td style="white-space:nowrap">
+        <button onclick="openColForm('${c._id}')"
+          style="background:none;border:1px solid var(--sage);color:var(--sage);padding:3px 10px;border-radius:4px;font-size:11px;cursor:pointer;font-weight:600;margin-right:5px">
+          ✏ Edit
+        </button>
+        <button onclick="delCol('${c._id}')"
+          style="background:none;border:1px solid var(--red);color:var(--red);padding:3px 8px;border-radius:4px;font-size:11px;cursor:pointer">
+          Delete
+        </button>
+      </td>
     </tr>`).join('');
 }
+
+// Filter by search text (case-insensitive)
+function filterCols(q){
+  if(!q||!q.trim()){renderCols(allCols);return;}
+  const rx = new RegExp(q.trim().replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'i');
+  renderCols(allCols.filter(c=>
+    rx.test(c.name) || rx.test(c.course) || rx.test(c.affiliation||'') || rx.test(c.badge||'')
+  ));
+}
+
+// Open form for ADD (id=null) or EDIT (id=string)
+function openColForm(id){
+  const isEdit = !!id;
+  document.getElementById('fpColTitle').textContent = isEdit ? '✏ Edit College' : 'Add New College';
+  document.getElementById('saveColBtn').textContent = isEdit ? 'Update College' : 'Save College';
+  document.getElementById('ac-id').value = id || '';
+  if(isEdit){
+    const c = allCols.find(x=>x._id===id);
+    if(!c){showToast('College not found','error');return;}
+    document.getElementById('ac-name').value  = c.name||'';
+    document.getElementById('ac-course').value= c.course||'';
+    document.getElementById('ac-fee').value   = c.fee||'';
+    document.getElementById('ac-seats').value = c.seats||60;
+    document.getElementById('ac-affil').value = c.affiliation||'';
+    document.getElementById('ac-badge').value = c.badge||'';
+    document.getElementById('ac-desc').value  = c.description||'';
+  } else {
+    ['ac-name','ac-course','ac-fee','ac-seats','ac-affil','ac-desc'].forEach(i=>{
+      const el=document.getElementById(i); if(el) el.value='';
+    });
+    document.getElementById('ac-badge').value='';
+  }
+  // Show form, scroll to it
+  const fp=document.getElementById('fpCol');
+  fp.style.display='block';
+  fp.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function closeColForm(){
+  document.getElementById('fpCol').style.display='none';
+}
+
 async function saveCollege(){
-  const name=document.getElementById('ac-name').value.trim();const fee=+document.getElementById('ac-fee').value;
-  if(!name||!fee){showToast('Name and fee required','error');return;}
+  const id   = document.getElementById('ac-id').value;
+  const name = document.getElementById('ac-name').value.trim();
+  const fee  = +document.getElementById('ac-fee').value;
+  const course = document.getElementById('ac-course').value.trim();
+  if(!name){showToast('College name required','error');return;}
+  if(!course){showToast('Course required','error');return;}
+  if(!fee||fee<=0){showToast('Valid fee required','error');return;}
+  const payload = {
+    name, course, fee,
+    seats:       +document.getElementById('ac-seats').value||60,
+    affiliation: document.getElementById('ac-affil').value.trim(),
+    badge:       document.getElementById('ac-badge').value,
+    description: document.getElementById('ac-desc').value.trim(),
+  };
+  const btn=document.getElementById('saveColBtn');
+  btn.textContent='Saving...'; btn.disabled=true;
   try{
-    await fetch(APIBASE+'/colleges',{method:'POST',headers:{'Content-Type':'application/json','x-admin-token':Auth.get()},body:JSON.stringify({name,course:document.getElementById('ac-course').value,fee,seats:+document.getElementById('ac-seats').value||60,affiliation:document.getElementById('ac-affil').value,badge:document.getElementById('ac-badge').value,description:document.getElementById('ac-desc').value})});
-    showToast('College added!');toggleFP('fpCol');await loadCols();loadStats();
-    ['ac-name','ac-fee','ac-seats','ac-affil','ac-desc'].forEach(id=>document.getElementById(id).value='');
+    const isEdit = !!id;
+    const url    = isEdit ? APIBASE+'/colleges/'+id : APIBASE+'/colleges';
+    const method = isEdit ? 'PUT' : 'POST';
+    await fetch(url,{method,headers:{'Content-Type':'application/json','x-admin-token':Auth.get()},body:JSON.stringify(payload)});
+    showToast(isEdit?'College updated!':'College added!');
+    closeColForm();
+    await loadCols();
+    loadStats();
   }catch(e){showToast('Error: '+e.message,'error');}
+  btn.textContent=id?'Update College':'Save College';btn.disabled=false;
 }
+
 async function toggleCol(id,active){
-  try{await fetch(APIBASE+'/colleges/'+id,{method:'PUT',headers:{'Content-Type':'application/json','x-admin-token':Auth.get()},body:JSON.stringify({active})});await loadCols();}
-  catch(e){showToast('Error','error');}
+  try{
+    await fetch(APIBASE+'/colleges/'+id,{method:'PUT',headers:{'Content-Type':'application/json','x-admin-token':Auth.get()},body:JSON.stringify({active})});
+    await loadCols();
+  }catch(e){showToast('Error','error');}
 }
+
 async function delCol(id){
-  if(!confirm('Remove this college?'))return;
-  try{await fetch(APIBASE+'/colleges/'+id,{method:'DELETE',headers:{'x-admin-token':Auth.get()}});await loadCols();loadStats();}
-  catch(e){showToast('Error','error');}
+  if(!confirm('Remove this college? This cannot be undone.'))return;
+  try{
+    await fetch(APIBASE+'/colleges/'+id,{method:'DELETE',headers:{'x-admin-token':Auth.get()}});
+    await loadCols();
+    loadStats();
+  }catch(e){showToast('Error','error');}
+}
+
+// ── BULK UPLOAD FUNCTIONS ───────────────────────────────────────
+
+// Download CSV template
+function downloadColTemplate(){
+  const rows = [
+    'name,course,fee,seats,affiliation,badge,description',
+    'LNCT Bhopal,B.Tech,95000,120,RGPV,Popular,Top engineering college',
+    'BCS Bhopal,BCA,42000,60,Barkatullah Univ,Budget,Affordable BCA option',
+    'MANIT Bhopal,B.Tech,12000,60,NIT,Govt,Government NIT',
+    'SIRTS Bhopal,MBA,65000,60,RGPV,Top Ranked,MBA with good placement',
+    'IES Bhopal,BBA,48000,80,Barkatullah Univ,,',
+  ];
+  const csv = rows.join('\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+  a.download = 'colleges_template.csv';
+  a.click();
+  showToast('Template downloaded!');
+}
+
+// Handle drag-drop
+function handleColDrop(e){
+  const file = e.dataTransfer.files[0];
+  if(file) parseColCSV(file);
+}
+
+// Parse CSV file and show preview
+function parseColCSV(file){
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const text = e.target.result.trim();
+    const lines = text.split('\n').filter(l=>l.trim());
+    if(!lines.length){ showToast('Empty file','error'); return; }
+
+    // Detect header row
+    const firstLower = lines[0].toLowerCase();
+    const hasHeader = firstLower.includes('name') || firstLower.includes('college') || firstLower.includes('course');
+    const dataLines = hasHeader ? lines.slice(1) : lines;
+
+    const validBadges = ['popular','budget','top ranked','govt','new',''];
+
+    parsedColRows = dataLines.map((line, idx) => {
+      // Handle quoted CSV properly
+      const cols = parseCSVLine(line);
+      const name        = (cols[0]||'').trim();
+      const course      = (cols[1]||'').trim();
+      const feeRaw      = (cols[2]||'').trim().replace(/[₹,\s]/g,'');
+      const fee         = parseFloat(feeRaw) || 0;
+      const seats       = parseInt(cols[3]) || 60;
+      const affiliation = (cols[4]||'').trim();
+      const badge       = (cols[5]||'').trim();
+      const description = (cols[6]||'').trim();
+
+      // Validate
+      const errors = [];
+      if(!name)          errors.push('Name missing');
+      if(!course)        errors.push('Course missing');
+      if(!fee||fee<=0)   errors.push('Fee invalid (must be a number > 0)');
+      if(badge && !validBadges.includes(badge.toLowerCase())) errors.push(`Badge "${badge}" invalid`);
+
+      return { rowNum:idx+1+(hasHeader?1:0), name, course, fee, seats, affiliation, badge, description, errors, valid:errors.length===0 };
+    });
+
+    const valid   = parsedColRows.filter(r=>r.valid).length;
+    const invalid = parsedColRows.length - valid;
+    renderColPreview(parsedColRows, valid, invalid, file.name);
+  };
+  reader.readAsText(file);
+}
+
+// Parse a single CSV line handling quoted fields
+function parseCSVLine(line){
+  const result = [];
+  let current = '';
+  let inQuotes = false;
+  for(let i=0;i<line.length;i++){
+    const c = line[i];
+    if(c==='"' && !inQuotes){ inQuotes=true; continue; }
+    if(c==='"' && inQuotes){ inQuotes=false; continue; }
+    if(c===',' && !inQuotes){ result.push(current); current=''; continue; }
+    current += c;
+  }
+  result.push(current);
+  return result;
+}
+
+// Render preview table
+function renderColPreview(rows, valid, invalid, filename){
+  const prev = document.getElementById('colCsvPreview');
+  const acts = document.getElementById('colBulkActions');
+
+  // Summary bar
+  let html = `<div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;background:${valid>0?'rgba(64,145,108,.08)':'rgba(214,40,40,.08)'};border:1px solid ${valid>0?'rgba(64,145,108,.2)':'rgba(214,40,40,.2)'};margin-bottom:10px;flex-wrap:wrap">
+    <span style="font-size:14px;font-weight:700;color:var(--ink)">📄 ${filename}</span>
+    <span style="color:var(--green);font-weight:700">✅ ${valid} valid</span>
+    ${invalid>0?`<span style="color:var(--red);font-weight:700">❌ ${invalid} will be skipped</span>`:''}
+    <span style="color:var(--gray);font-size:12px">${rows.length} total rows parsed</span>
+  </div>`;
+
+  // Preview table (show max 50 rows)
+  const display = rows.slice(0, 50);
+  html += `<div style="overflow-x:auto;border-radius:8px;border:1px solid var(--lt);max-height:320px;overflow-y:auto">
+  <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:600px">
+    <thead style="position:sticky;top:0">
+      <tr style="background:var(--ink);color:#fff">
+        <th style="padding:8px 10px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.4px">#</th>
+        <th style="padding:8px 10px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.4px">Name</th>
+        <th style="padding:8px 10px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.4px">Course</th>
+        <th style="padding:8px 10px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.4px">Fee</th>
+        <th style="padding:8px 10px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.4px">Seats</th>
+        <th style="padding:8px 10px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.4px">Affiliation</th>
+        <th style="padding:8px 10px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.4px">Badge</th>
+        <th style="padding:8px 10px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.4px">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${display.map(r=>`
+        <tr style="border-bottom:1px solid var(--lt);background:${r.valid?'#fff':'rgba(214,40,40,.03)'}">
+          <td style="padding:7px 10px;color:var(--gray)">${r.rowNum}</td>
+          <td style="padding:7px 10px;font-weight:${r.valid?700:400};color:${r.valid?'var(--ink)':'var(--gray)'}">${r.name||'—'}</td>
+          <td style="padding:7px 10px">${r.course||'—'}</td>
+          <td style="padding:7px 10px;font-weight:700;color:var(--sage)">${r.fee>0?'₹'+r.fee.toLocaleString('en-IN'):'—'}</td>
+          <td style="padding:7px 10px">${r.seats}</td>
+          <td style="padding:7px 10px;font-size:11px;color:var(--gray)">${r.affiliation||'–'}</td>
+          <td style="padding:7px 10px">${r.badge||'–'}</td>
+          <td style="padding:7px 10px">
+            ${r.valid
+              ? '<span style="color:var(--green);font-weight:700;font-size:11px">✅ Valid</span>'
+              : `<span style="color:var(--red);font-size:11px" title="${r.errors.join(', ')}">❌ ${r.errors[0]}</span>`
+            }
+          </td>
+        </tr>`).join('')}
+    </tbody>
+  </table></div>`;
+
+  if(rows.length > 50){
+    html += `<p style="font-size:12px;color:var(--gray);margin-top:6px;text-align:center">Showing first 50 of ${rows.length} rows</p>`;
+  }
+
+  prev.innerHTML = html;
+
+  // Show/hide import button
+  if(valid > 0){
+    acts.style.display = 'flex';
+    document.getElementById('colImportBtn').textContent = `⬆ Import ${valid} Valid Colleges`;
+  } else {
+    acts.style.display = 'none';
+  }
+}
+
+function clearColPreview(){
+  parsedColRows = [];
+  document.getElementById('colCsvPreview').innerHTML = '';
+  document.getElementById('colBulkActions').style.display = 'none';
+  document.getElementById('colCsvFile').value = '';
+}
+
+// Import valid rows to backend
+async function importColsBulk(){
+  const validRows = parsedColRows.filter(r=>r.valid);
+  if(!validRows.length){ showToast('No valid rows to import','error'); return; }
+
+  const btn = document.getElementById('colImportBtn');
+  btn.textContent = 'Importing...'; btn.disabled = true;
+
+  try{
+    const res = await fetch(APIBASE+'/colleges/bulk', {
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-admin-token':Auth.get()},
+      body: JSON.stringify({ colleges: validRows })
+    });
+    const d = await res.json();
+    if(!res.ok) throw new Error(d.error||'Import failed');
+
+    showToast(`✅ ${d.added} colleges imported!${d.skipped>0?' ('+d.skipped+' skipped)':''}`);
+    clearColPreview();
+    toggleFP('fpBulk');
+    await loadCols();
+    loadStats();
+  }catch(e){
+    showToast('Import error: '+e.message,'error');
+  }
+
+  btn.textContent = `⬆ Import ${validRows.length} Valid Colleges`;
+  btn.disabled = false;
 }
 
 // ── JOBS ──
